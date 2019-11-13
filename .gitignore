@@ -10,3 +10,7 @@ starchProject-JPA/.settings/
 starchProject-JPA/.classpath
 
 starchProject-JPA/.project
+
+starchProject-JPA/target/
+
+starchProject-model/target/
