@@ -12,5 +12,15 @@ public class Singleton {
 		
 	}
 	
-	
+	public static Singleton getInstance() {
+		if (instance == null) {
+			instance = new Singleton();
+		}
+
+		return instance;
+	}
+
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
 }
