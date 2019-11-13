@@ -2,13 +2,13 @@ package sopra.formation;
 
 public class Gestion {
 	
-	private typeGestion gestion;
+	private TypeGestion gestion;
 	private Integer version;
 	
-	public typeGestion getGestion() {
+	public TypeGestion getGestion() {
 		return gestion;
 	}
-	public void setGestion(typeGestion gestion) {
+	public void setGestion(TypeGestion gestion) {
 		this.gestion = gestion;
 	}
 	public Integer getVersion() {
