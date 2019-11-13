@@ -1,13 +1,35 @@
 package sopra.formation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+@Entity
+@Table
 public class LieuxEvenement {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
 	private int version;
 	private String description;
 	private Adresse adresse;
+	private List<Evenement> evenements = new ArrayList<Evenement>();
+
 	
 	
 	
+	public List<Evenement> getEvenements() {
+		return evenements;
+	}
+	public void setEvenements(List<Evenement> evenements) {
+		this.evenements = evenements;
+	}
 	public LieuxEvenement() {
 		super();
 	}
