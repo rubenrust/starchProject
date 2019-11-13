@@ -1,8 +1,18 @@
 package sopra.formation;
 
-public class Groupe {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
+@Entity
+@Table(name = "Groupe")
+public class Groupe {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
 	private Integer version;
 	private String codeGroupe;
 	private String nom;

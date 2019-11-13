@@ -1,9 +1,18 @@
 package sopra.formation;
 
-public class Utilisateur {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
+@Entity
+@Table(name = "Utilisateur")
+public class Utilisateur {
+	@Id
+	@GeneratedValue
 	private Long id;
-	
+	@Version
 	private int version;
 	
 	private String nom;
