@@ -8,16 +8,17 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Commentaire")
+@Table
 public class Commentaire {
 @Id
 @GeneratedValue
 private Long id;
 @Version
-private int version;
+private Integer version;
 @Transient
 private Utilisateur utilisateur;
 private String commentaire;
+
 public Long getId() {
 	return id;
 }
