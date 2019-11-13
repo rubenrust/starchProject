@@ -27,7 +27,7 @@ public class LieuxEvenement {
 
 	
 	
-	
+	@Transient
 	public List<Evenement> getEvenements() {
 		return evenements;
 	}

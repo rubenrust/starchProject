@@ -18,6 +18,8 @@ private Integer version;
 @Transient
 private Utilisateur utilisateur;
 private String commentaire;
+@Transient
+private Evenement evenement;
 
 public Long getId() {
 	return id;

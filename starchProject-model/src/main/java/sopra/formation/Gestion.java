@@ -1,8 +1,5 @@
 package sopra.formation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,14 +21,24 @@ public class Gestion {
 	@Version
 	private int version;
 	@Transient
-	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+	private Utilisateur utilisateurs;
+	@Transient
+	private Groupe groupe;
+	
 
 	
-	public List<Utilisateur> getUtilisateurs() {
+
+	public Utilisateur getUtilisateurs() {
 		return utilisateurs;
 	}
-	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+	public void setUtilisateurs(Utilisateur utilisateurs) {
 		this.utilisateurs = utilisateurs;
+	}
+	public Groupe getGroupe() {
+		return groupe;
+	}
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
 	}
 	public void setVersion(int version) {
 		this.version = version;
