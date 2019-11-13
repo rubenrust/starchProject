@@ -17,7 +17,6 @@ private Long id;
 private Integer version;
 @Transient
 private Utilisateur utilisateur;
-//A PRECISER cle etrangere?
 private String commentaire;
 @Transient
 private Evenement evenement;
