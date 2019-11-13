@@ -26,7 +26,7 @@ public class Gestion {
 	@Transient
 	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 
-	
+	@Transient
 	public List<Utilisateur> getUtilisateurs() {
 		return utilisateurs;
 	}

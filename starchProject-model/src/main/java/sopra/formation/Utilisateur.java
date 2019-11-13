@@ -1,9 +1,13 @@
 package sopra.formation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -29,6 +33,15 @@ public class Utilisateur {
 	
 	private boolean admin;
 
+	@Transient
+	private Entreprise entreprise ;
+	@Transient
+	private Gestion gestion ;
+	@Transient
+	private Participation participation ;
+	@Transient
+	private  List<Favoris> favoris = new ArrayList<Favoris>() ;
+	
 	public Utilisateur() {
 		super();
 	}
@@ -104,6 +117,39 @@ public class Utilisateur {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
+
+	public Gestion getGestion() {
+		return gestion;
+	}
+
+	public void setGestion(Gestion gestion) {
+		this.gestion = gestion;
+	}
+
+	public Participation getParticipation() {
+		return participation;
+	}
+
+	public void setParticipation(Participation participation) {
+		this.participation = participation;
+	}
+
+	public List<Favoris> getFavoris() {
+		return favoris;
+	}
+
+	public void setFavoris(List<Favoris> favoris) {
+		this.favoris = favoris;
+	}
+	
 	
 	
 }
