@@ -12,8 +12,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
+
 @Entity
-@Table
+@Table(name = "Gestion")
 public class Gestion {
 	@Id
 	@GeneratedValue
