@@ -1,26 +1,70 @@
 package sopra.formation;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+
+@Entity
+@Table
 public class Evenement {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
 	private int version;
-	private String titre;
+	private String titre;	
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private Integer nbParticipantMax;
 	private Integer prix;
+	@Temporal(TemporalType.DATE)
 	private Date deadline;
+	@Enumerated(EnumType.STRING)
 	private Recurrence recurrence;
+	@Enumerated(EnumType.STRING)
 	private TypeEvenement typeEvenement;
+	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
+	@Transient
+	private List<Commentaire> commentaires = new ArrayList<Commentaire>();
+	@Transient
+	private List<Participation> participations = new ArrayList<Participation>();
+
 	
 	
 	
-	
+	public List<Participation> getParticipations() {
+		return participations;
+	}
+
+	public void setParticipations(List<Participation> participations) {
+		this.participations = participations;
+	}
+
 	public Evenement() {
 		super();
 	}
 	
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
 	public Integer getPrix() {
 		return prix;
 	}

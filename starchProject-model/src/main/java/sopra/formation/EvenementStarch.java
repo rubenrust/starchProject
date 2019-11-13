@@ -1,14 +1,37 @@
 package sopra.formation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+
+@Entity
+@Table
 public class EvenementStarch {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
 	private int version;
 	private String titre;
 	private Integer nbParticipantMax;
 	private Integer prixStarch;
 	private String description;
+	@Transient
+	private List<Evenement> evenements = new ArrayList<Evenement>();
+	@Enumerated(EnumType.STRING)
 	private TypeEvenement typeEvenement;
+	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
+	@Transient
 	private Adresse adresse;
 	
 	
@@ -21,6 +44,13 @@ public class EvenementStarch {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public List<Evenement> getEvenements() {
+		return evenements;
+	}
+	public void setEvenements(List<Evenement> evenements) {
+		this.evenements = evenements;
 	}
 	public int getVersion() {
 		return version;
