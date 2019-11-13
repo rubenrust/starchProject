@@ -24,10 +24,7 @@ public class LieuxEvenement {
 	private Adresse adresse;
 	@Transient
 	private List<Evenement> evenements = new ArrayList<Evenement>();
-
 	
-	
-	@Transient
 	public List<Evenement> getEvenements() {
 		return evenements;
 	}

@@ -18,21 +18,13 @@ public class Utilisateur {
 	private Long id;
 	@Version
 	private int version;
-	
 	private String nom;
-	
 	private String prenom;
-	
 	private String email;
-	
 	private String identifiant;
-	
 	private String motDePasse;
-	
 	private String telephone;
-	
 	private boolean admin;
-
 	@Transient
 	private Entreprise entreprise ;
 	@Transient

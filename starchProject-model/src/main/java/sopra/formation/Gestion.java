@@ -26,8 +26,6 @@ public class Gestion {
 	private Groupe groupe;
 	
 
-	
-
 	public Utilisateur getUtilisateurs() {
 		return utilisateurs;
 	}
