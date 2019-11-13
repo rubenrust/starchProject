@@ -1,5 +1,9 @@
 package sopra.formation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,13 +18,44 @@ public class Entreprise {
 	@GeneratedValue
 	private Long id;
 	@Version
-	private Integer version;
+	private int version;
 	private String nom;
 	private String codeEntreprise;
 	private String siret;
 	private String tva;
-	@Transient
+	@Embedded
 	private Adresse adresse;
+	@Transient
+	private List<Groupe> groupes = new ArrayList<Groupe>();
+	@Transient
+	private List<Evenement> evenements = new ArrayList<Evenement>();
+	@Transient
+	private List<Utilisateur> colaborateurs = new ArrayList<Utilisateur>();
+
+
+	
+	
+	public List<Evenement> getEvenements() {
+		return evenements;
+	}
+	public void setEvenements(List<Evenement> evenements) {
+		this.evenements = evenements;
+	}
+	public List<Utilisateur> getColaborateurs() {
+		return colaborateurs;
+	}
+	public void setColaborateurs(List<Utilisateur> colaborateurs) {
+		this.colaborateurs = colaborateurs;
+	}
+	public List<Groupe> getGroupes() {
+		return groupes;
+	}
+	public void setGroupes(List<Groupe> groupes) {
+		this.groupes = groupes;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
 	public Long getId() {
 		return id;
 	}
