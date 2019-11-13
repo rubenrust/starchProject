@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 public class Singleton {
 
 	private static Singleton instance = null;
+	
 	private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("starchProject");
 
 	private Singleton() {
@@ -18,6 +19,10 @@ public class Singleton {
 		}
 		
 		return instance;
+	}
+	
+	public EntityManagerFactory getEmf() {
+		return emf;
 	}
 	
 }
