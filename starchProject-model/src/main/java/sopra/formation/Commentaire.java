@@ -1,11 +1,24 @@
 package sopra.formation;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+@Entity
+@Table
 public class Commentaire {
-	
+@Id
+@GeneratedValue
 private Long id;
+@Version
 private Integer version;
+@Transient
 private Utilisateur utilisateur;
 private String commentaire;
+
 public Long getId() {
 	return id;
 }
