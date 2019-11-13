@@ -3,7 +3,7 @@ package sopra.formation;
 public class Gestion {
 	
 	private TypeGestion gestion;
-	private Integer version;
+	private int version;
 	
 	public TypeGestion getGestion() {
 		return gestion;
