@@ -1,9 +1,13 @@
 package sopra.formation;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Singleton {
 
 	private static Singleton instance = null;
-	
+	private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("starchProject");
+
 	private Singleton() {
 		
 	}
