@@ -1,13 +1,13 @@
 package sopra.formation;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Adresse {
 
 	private String rue;
-	
 	private String complement;
-	
 	private String codePostal;
-	
 	private String ville;
 
 	public Adresse() {

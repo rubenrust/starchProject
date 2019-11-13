@@ -3,6 +3,7 @@ package sopra.formation;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,7 +32,7 @@ public class EvenementStarch {
 	private TypeEvenement typeEvenement;
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
-	@Transient
+	@Embedded
 	private Adresse adresse;
 	
 	

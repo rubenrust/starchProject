@@ -1,14 +1,28 @@
 package sopra.formation;
 
-public class Favoris {
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
 
+@Entity
+@Table
+public class Favoris {
+	@Id
+	@GeneratedValue
 	private Long id;
-	
+	@Version
 	private int version;
-	
+	@Enumerated(EnumType.STRING)
 	private NomEvenement nomActivite;
-	
+	@Enumerated(EnumType.STRING)
 	private LieuxEvenement nomLieu;
+	@Transient
+	private Utilisateur utilisateur;
 
 	public Favoris() {
 		super();
