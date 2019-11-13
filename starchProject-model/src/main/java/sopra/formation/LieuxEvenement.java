@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -18,7 +19,9 @@ public class LieuxEvenement {
 	@Version
 	private int version;
 	private String description;
+	@Transient
 	private Adresse adresse;
+	@Transient
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 
 	

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -29,11 +31,11 @@ public class Evenement {
 	private Integer prix;
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private Recurrence recurrence;
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private TypeEvenement typeEvenement;
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
 	@Transient
 	private List<Commentaire> commentaires = new ArrayList<Commentaire>();

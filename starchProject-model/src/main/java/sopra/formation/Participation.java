@@ -1,5 +1,7 @@
 package sopra.formation;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -11,8 +13,26 @@ public class Participation {
 	private Long id;
 	@Version
 	private int version;
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private TypeParticipation type;
+	@Transient
+	private Utilisateur utilisateur;
+	@Transient
+	private Evenement evenement;
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+	public Evenement getEvenement() {
+		return evenement;
+	}
+	public void setEvenement(Evenement evenement) {
+		this.evenement = evenement;
+	}
+
 	
 	public Participation() {
 		super();

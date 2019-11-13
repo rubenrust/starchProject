@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -25,9 +27,9 @@ public class EvenementStarch {
 	private String description;
 	@Transient
 	private List<Evenement> evenements = new ArrayList<Evenement>();
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private TypeEvenement typeEvenement;
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
 	@Transient
 	private Adresse adresse;
