@@ -30,7 +30,7 @@ public class Utilisateur {
 	@ManyToOne
 	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise ;
-	@OneToMany(mappedBy="gestion")
+	@OneToMany(mappedBy="utilisateur")
 	private List<Gestion> gestion = new ArrayList<Gestion>() ;
 	@OneToMany(mappedBy="utilisateur")
 	private List<Participation> participation =new ArrayList<Participation>();

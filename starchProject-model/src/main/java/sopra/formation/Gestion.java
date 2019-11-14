@@ -23,17 +23,17 @@ public class Gestion {
 	private int version;
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")
-	private Utilisateur utilisateurs;
+	private Utilisateur utilisateur;
 	@ManyToOne
 	@JoinColumn(name="groupe_id")
 	private Groupe groupe;
 	
 
-	public Utilisateur getUtilisateurs() {
-		return utilisateurs;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
-	public void setUtilisateurs(Utilisateur utilisateurs) {
-		this.utilisateurs = utilisateurs;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 	public Groupe getGroupe() {
 		return groupe;
