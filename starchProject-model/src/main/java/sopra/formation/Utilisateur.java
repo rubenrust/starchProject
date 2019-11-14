@@ -31,9 +31,9 @@ public class Utilisateur {
 	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise ;
 	@OneToMany(mappedBy="gestion")
-	private Gestion gestion ;
+	private List<Gestion> gestion = new ArrayList<Gestion>() ;
 	@OneToMany(mappedBy="utilisateur")
-	private Participation participation ;
+	private List<Participation> participation =new ArrayList<Participation>();
 	@OneToMany(mappedBy="utilisateur")
 	private  List<Favoris> favoris = new ArrayList<Favoris>();
 	@OneToMany(mappedBy = "utilisateur")
@@ -123,20 +123,30 @@ public class Utilisateur {
 		this.entreprise = entreprise;
 	}
 
-	public Gestion getGestion() {
+
+
+	public List<Gestion> getGestion() {
 		return gestion;
 	}
 
-	public void setGestion(Gestion gestion) {
+	public void setGestion(List<Gestion> gestion) {
 		this.gestion = gestion;
 	}
 
-	public Participation getParticipation() {
+	public List<Participation> getParticipation() {
 		return participation;
 	}
 
-	public void setParticipation(Participation participation) {
+	public void setParticipation(List<Participation> participation) {
 		this.participation = participation;
+	}
+
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
 	}
 
 	public List<Favoris> getFavoris() {
