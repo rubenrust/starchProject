@@ -25,6 +25,24 @@ public class Groupe {
 	private String nom;
 	@OneToMany(mappedBy = "groupe")
 	private List<Evenement> evenement = new ArrayList<Evenement>();
+	public List<Evenement> getEvenement() {
+		return evenement;
+	}
+	public void setEvenement(List<Evenement> evenement) {
+		this.evenement = evenement;
+	}
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
+	public List<Gestion> getUtilisateurs() {
+		return utilisateurs;
+	}
+	public void setUtilisateurs(List<Gestion> utilisateurs) {
+		this.utilisateurs = utilisateurs;
+	}
 	@ManyToOne
 	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise;

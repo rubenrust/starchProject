@@ -50,7 +50,16 @@ public class Singleton {
 	
 	private final IUtilisateurRepository utilisateurRepo = new UtilisateurRepositoryJpa();
 	
+	private final ICommentaireRepository commentaireRepo = new CommentaireRepositoryJpa();
 	
+
+	public ICommentaireRepository getCommentaireRepo() {
+		return commentaireRepo;
+	}
+
+	public static void setInstance(Singleton instance) {
+		Singleton.instance = instance;
+	}
 
 	private Singleton() {
 		

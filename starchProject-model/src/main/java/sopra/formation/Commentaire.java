@@ -24,6 +24,12 @@ private String commentaire;
 @JoinColumn(name="evenement_id")
 private Evenement evenement;
 
+public Evenement getEvenement() {
+	return evenement;
+}
+public void setEvenement(Evenement evenement) {
+	this.evenement = evenement;
+}
 public Long getId() {
 	return id;
 }

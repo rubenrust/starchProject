@@ -55,6 +55,38 @@ public class Evenement {
 	@JoinColumn(name="groupe_id")
 	private Groupe groupe;
 
+	public EvenementStarch getEvenementStarch() {
+		return evenementStarch;
+	}
+
+	public void setEvenementStarch(EvenementStarch evenementStarch) {
+		this.evenementStarch = evenementStarch;
+	}
+
+	public LieuxEvenement getLieuxEvenement() {
+		return lieuxEvenement;
+	}
+
+	public void setLieuxEvenement(LieuxEvenement lieuxEvenement) {
+		this.lieuxEvenement = lieuxEvenement;
+	}
+
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
+
+	public Groupe getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
+	}
+
 	public List<Participation> getParticipations() {
 		return participations;
 	}
