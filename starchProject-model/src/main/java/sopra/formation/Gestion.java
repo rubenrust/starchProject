@@ -5,13 +5,14 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 
 @Entity
-@Table(name = "Gestion")
+@Table
 public class Gestion {
 	@Id
 	@GeneratedValue
@@ -20,12 +21,12 @@ public class Gestion {
 	private TypeGestion gestion;
 	@Version
 	private int version;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateurs;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="groupe_id")
 	private Groupe groupe;
-	
-
 	
 
 	public Utilisateur getUtilisateurs() {
