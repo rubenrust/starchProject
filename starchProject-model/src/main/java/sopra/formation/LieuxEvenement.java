@@ -7,8 +7,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -22,8 +24,11 @@ public class LieuxEvenement {
 	private String description;
 	@Embedded
 	private Adresse adresse;
-	@Transient
+	@OneToMany(mappedBy = "lieuxEvenement")
 	private List<Evenement> evenements = new ArrayList<Evenement>();
+	@ManyToOne
+	@JoinColumn(name="favoris_id")
+	private Favoris favoris;
 	
 	public List<Evenement> getEvenements() {
 		return evenements;

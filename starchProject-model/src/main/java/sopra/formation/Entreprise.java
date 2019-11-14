@@ -26,9 +26,9 @@ public class Entreprise {
 	private String tva;
 	@Embedded
 	private Adresse adresse;
-	@Transient
+	@OneToMany(mappedBy = "entreprise")
 	private List<Groupe> groupes = new ArrayList<Groupe>();
-	@Transient
+	@OneToMany(mappedBy = "entreprise")
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 	@OneToMany(mappedBy="entreprise")
 	private List<Utilisateur> collaborateurs = new ArrayList<Utilisateur>();

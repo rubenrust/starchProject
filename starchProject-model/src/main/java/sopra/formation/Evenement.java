@@ -9,11 +9,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -39,15 +40,19 @@ public class Evenement {
 	private NomEvenement nomEvenement;
 	@OneToMany(mappedBy = "evenement")
 	private List<Commentaire> commentaires = new ArrayList<Commentaire>();
-	@Transient
+	@OneToMany(mappedBy = "evenement")
 	private List<Participation> participations = new ArrayList<Participation>();
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="evenementStarch_id")
 	private EvenementStarch evenementStarch;
-	@Transient
-	private LieuxEvenement lieuxevenement;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="lieuxEvenement_id")
+	private LieuxEvenement lieuxEvenement;
+	@ManyToOne
+	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="groupe_id")
 	private Groupe groupe;
 
 	public List<Participation> getParticipations() {

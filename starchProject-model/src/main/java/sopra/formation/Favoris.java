@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ public class Favoris {
 	private int version;
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomActivite;
-	@Enumerated(EnumType.STRING)
+	@OneToMany(mappedBy = "favoris")
 	private LieuxEvenement nomLieu;
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")

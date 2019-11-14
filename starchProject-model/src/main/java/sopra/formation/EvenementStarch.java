@@ -9,8 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 
@@ -26,7 +26,7 @@ public class EvenementStarch {
 	private Integer nbParticipantMax;
 	private Integer prixStarch;
 	private String description;
-	@Transient
+	@OneToMany(mappedBy = "evenementStarch")
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 	@Enumerated(EnumType.STRING)
 	private TypeEvenement typeEvenement;
