@@ -21,7 +21,7 @@ public class LieuxEvenement {
 	private Long id;
 	@Version
 	private int version;
-	private String nom;
+	private String nomLieu;
 	private String description;
 	@Embedded
 	private Adresse adresse;
@@ -69,6 +69,12 @@ public class LieuxEvenement {
 	}
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+	public String getNomLieu() {
+		return nomLieu;
+	}
+	public void setNomLieu(String nomLieu) {
+		this.nomLieu = nomLieu;
 	}
 	
 	
