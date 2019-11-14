@@ -1,5 +1,8 @@
 package sopra.formation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,9 +25,8 @@ public class Favoris {
 	private int version;
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomActivite;
-	//@OneToMany(mappedBy = "favoris")
-	@Transient
-	private LieuxEvenement lieuxEvenement;
+	@OneToMany(mappedBy = "favoris")
+	private List<LieuxEvenement> lieuxEvenement = new ArrayList<LieuxEvenement>();
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
@@ -56,13 +58,23 @@ public class Favoris {
 		this.nomActivite = nomActivite;
 	}
 
-	public LieuxEvenement getNomLieu() {
+	public List<LieuxEvenement> getLieuxEvenement() {
 		return lieuxEvenement;
 	}
 
-	public void setNomLieu(LieuxEvenement nomLieu) {
-		this.lieuxEvenement = nomLieu;
+	public void setLieuxEvenement(List<LieuxEvenement> lieuxEvenement) {
+		this.lieuxEvenement = lieuxEvenement;
 	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+
 	
 	
 }
