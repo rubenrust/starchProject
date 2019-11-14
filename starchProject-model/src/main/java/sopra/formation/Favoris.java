@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -21,8 +22,9 @@ public class Favoris {
 	private int version;
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomActivite;
-	@OneToMany(mappedBy = "favoris")
-	private LieuxEvenement nomLieu;
+	//@OneToMany(mappedBy = "favoris")
+	@Transient
+	private LieuxEvenement lieuxEvenement;
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
@@ -55,11 +57,11 @@ public class Favoris {
 	}
 
 	public LieuxEvenement getNomLieu() {
-		return nomLieu;
+		return lieuxEvenement;
 	}
 
 	public void setNomLieu(LieuxEvenement nomLieu) {
-		this.nomLieu = nomLieu;
+		this.lieuxEvenement = nomLieu;
 	}
 	
 	

@@ -1,15 +1,20 @@
 package sopra.formation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import sopra.formation.repository.IEntreprisesRepository;
+import sopra.formation.repository.IEvenementRepository;
 import sopra.formation.repository.IEvenementStarchRepository;
+import sopra.formation.repository.IGestionRepository;
 import sopra.formation.repository.IGroupeRepository;
 import sopra.formation.repository.ILieuxEvenementRepository;
+import sopra.formation.repository.IParticipationRepository;
 import sopra.formation.repository.IUtilisateurRepository;
 
 public class TestWithJpa {
 
-	public static void main(String[] args) {
-		IUtilisateurRepository utilisateurRepo = Singleton.getInstance().getUtilisateurRepo();
+	public static void main(String[] args) throws ParseException {
 
 		Adresse adresseEscapeGame = new Adresse();
 		adresseEscapeGame.setRue("28 rue dupuis");
@@ -65,6 +70,21 @@ public class TestWithJpa {
 		laserGame = evenementStarchRepo.save(laserGame);
 		
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		
+		IEvenementRepository evenementRepo = Singleton.getInstance().getEvenementRepo();
+		
+		Evenement evenementEscape = new Evenement();
+		evenementEscape.setNbParticipantMax(25);
+		evenementEscape.setNomEvenement(NomEvenement.Escape_game);
+		evenementEscape.setTitre("escape game");
+		evenementEscape.setDate(sdf.parse("09-06-2018"));
+		
+		Evenement evenementLaser = new Evenement();
+		evenementLaser.setDate(sdf.parse("09-01-2017"));
+		
+		
+		
 		
 		IGroupeRepository groupeRepo = Singleton.getInstance().getGroupeRepo();
 		
@@ -91,7 +111,45 @@ public class TestWithJpa {
 		
 		sopra = entrepriseRepo.save(sopra);
 		
+		IUtilisateurRepository utilisateurRepo = Singleton.getInstance().getUtilisateurRepo();
 		
+		Utilisateur ruben = new Utilisateur();
+		ruben.setEmail("rust.ruben@gmail.com");
+		ruben.setIdentifiant("rubenrust");
+		ruben.setNom("rust");
+		ruben.setPrenom("ruben");
+		ruben.setTelephone("0632227403");
+		
+		Utilisateur oriane = new Utilisateur();
+		oriane.setEmail("oriane.galmard@gmail.com");
+		oriane.setIdentifiant("orianegalmard");
+		oriane.setNom("galmard");
+		oriane.setPrenom("oriane");
+		oriane.setTelephone("0621457485");
+		
+		ruben = utilisateurRepo.save(ruben);
+		oriane = utilisateurRepo.save(oriane);
 
+		IParticipationRepository participationRepo = Singleton.getInstance().getParticipationRepo();
+		
+		Participation participationRuben = new Participation();
+		participationRuben.setType(TypeParticipation.Participant);
+		
+		Participation participationOriane = new Participation();
+		participationOriane.setType(TypeParticipation.Organisateur);
+		
+		participationRuben = participationRepo.save(participationRuben);
+		participationOriane = participationRepo.save(participationOriane);
+		
+		IGestionRepository gestionRepo = Singleton.getInstance().getGestionRepo();
+		
+		Gestion gestionRuben = new Gestion();
+		gestionRuben.setGestion(TypeGestion.Membre);
+		
+		Gestion gestionOriane = new Gestion();
+		gestionOriane.setGestion(TypeGestion.Gestionnaire);
+		
+		gestionOriane = gestionRepo.save(gestionOriane);
+		gestionRuben = gestionRepo.save(gestionRuben);
 	}
 }

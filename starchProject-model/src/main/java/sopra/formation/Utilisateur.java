@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -30,9 +31,11 @@ public class Utilisateur {
 	@ManyToOne
 	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise ;
-	@OneToMany(mappedBy="gestion")
+	//@OneToMany(mappedBy="gestion")
+	@Transient
 	private Gestion gestion ;
-	@OneToMany(mappedBy="utilisateur")
+	//@OneToMany(mappedBy="utilisateur")
+	@Transient
 	private Participation participation ;
 	@OneToMany(mappedBy="utilisateur")
 	private  List<Favoris> favoris = new ArrayList<Favoris>();
