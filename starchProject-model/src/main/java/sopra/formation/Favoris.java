@@ -19,7 +19,7 @@ public class Favoris {
 	private int version;
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomActivite;
-	@Enumerated(EnumType.STRING)
+	@Transient
 	private LieuxEvenement nomLieu;
 	@Transient
 	private Utilisateur utilisateur;

@@ -7,6 +7,18 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+		<class>sopra.formation.Adresse</class>
+		<class>sopra.formation.Commentaire</class>
+		<class>sopra.formation.Entreprise</class>
+		<class>sopra.formation.Evenement</class>
+		<class>sopra.formation.EvenementStarch</class>
+		<class>sopra.formation.Favoris</class>
+		<class>sopra.formation.Gestion</class>
+		<class>sopra.formation.Groupe</class>
+		<class>sopra.formation.LieuxEvenement</class>
+		<class>sopra.formation.Participation</class>
+		<class>sopra.formation.Utilisateur</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />

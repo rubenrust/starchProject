@@ -1,5 +1,6 @@
 package sopra.formation;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
+@Entity
 public class Participation {
 	@Id
 	@GeneratedValue
