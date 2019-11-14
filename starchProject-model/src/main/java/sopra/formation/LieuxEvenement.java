@@ -30,6 +30,12 @@ public class LieuxEvenement {
 	@JoinColumn(name="favoris_id")
 	private Favoris favoris;
 	
+	public Favoris getFavoris() {
+		return favoris;
+	}
+	public void setFavoris(Favoris favoris) {
+		this.favoris = favoris;
+	}
 	public List<Evenement> getEvenements() {
 		return evenements;
 	}

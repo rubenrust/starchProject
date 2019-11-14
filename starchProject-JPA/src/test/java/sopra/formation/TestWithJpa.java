@@ -7,6 +7,7 @@ import sopra.formation.repository.ICommentaireRepository;
 import sopra.formation.repository.IEntreprisesRepository;
 import sopra.formation.repository.IEvenementRepository;
 import sopra.formation.repository.IEvenementStarchRepository;
+import sopra.formation.repository.IFavorisRepository;
 import sopra.formation.repository.IGestionRepository;
 import sopra.formation.repository.IGroupeRepository;
 import sopra.formation.repository.ILieuxEvenementRepository;
@@ -200,5 +201,18 @@ public class TestWithJpa {
 
 		gestionOriane = gestionRepo.save(gestionOriane);
 		gestionRuben = gestionRepo.save(gestionRuben);
+		
+		IFavorisRepository favorisRepo = Singleton.getInstance().getFavorisRepo();
+		
+		Favoris favorisRuben = new Favoris();
+		favorisRuben.setUtilisateur(ruben);
+		favorisRuben.setNomActivite(NomEvenement.Escape_game);
+		
+		favorisRuben = favorisRepo.save(favorisRuben);
+		
+		escapeGame.setFavoris(favorisRuben);
+		escapeGame = lieuxRepo.save(escapeGame);
+		
+		favorisRuben =favorisRepo.save(favorisRuben);
 	}
 }
