@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -29,8 +30,8 @@ public class Entreprise {
 	private List<Groupe> groupes = new ArrayList<Groupe>();
 	@Transient
 	private List<Evenement> evenements = new ArrayList<Evenement>();
-	@Transient
-	private List<Utilisateur> colaborateurs = new ArrayList<Utilisateur>();
+	@OneToMany(mappedBy="entreprise")
+	private List<Utilisateur> collaborateurs = new ArrayList<Utilisateur>();
 
 
 	
@@ -42,10 +43,10 @@ public class Entreprise {
 		this.evenements = evenements;
 	}
 	public List<Utilisateur> getColaborateurs() {
-		return colaborateurs;
+		return collaborateurs;
 	}
 	public void setColaborateurs(List<Utilisateur> colaborateurs) {
-		this.colaborateurs = colaborateurs;
+		this.collaborateurs = colaborateurs;
 	}
 	public List<Groupe> getGroupes() {
 		return groupes;

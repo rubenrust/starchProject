@@ -5,8 +5,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -21,9 +22,9 @@ public class Favoris {
 	private NomEvenement nomActivite;
 	@Enumerated(EnumType.STRING)
 	private LieuxEvenement nomLieu;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
-
 	public Favoris() {
 		super();
 	}

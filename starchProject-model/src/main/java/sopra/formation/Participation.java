@@ -4,6 +4,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
@@ -15,7 +17,8 @@ public class Participation {
 	private int version;
 	@Enumerated(EnumType.STRING)
 	private TypeParticipation type;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
 	@Transient
 	private Evenement evenement;

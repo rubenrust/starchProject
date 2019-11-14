@@ -6,9 +6,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -26,13 +27,14 @@ public class Utilisateur {
 	private String motDePasse;
 	private String telephone;
 	private boolean admin;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise ;
-	@Transient
+	@OneToMany(mappedBy="gestion")
 	private Gestion gestion ;
-	@Transient
+	@OneToMany(mappedBy="utilisateur")
 	private Participation participation ;
-	@Transient
+	@OneToMany(mappedBy="utilisateur")
 	private  List<Favoris> favoris = new ArrayList<Favoris>();
 	@OneToMany(mappedBy = "utilisateur")
 	private List<Commentaire> commentaires = new ArrayList<Commentaire>();
