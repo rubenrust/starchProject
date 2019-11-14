@@ -3,8 +3,9 @@ package sopra.formation;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
@@ -15,10 +16,12 @@ public class Commentaire {
 private Long id;
 @Version
 private Integer version;
-@Transient
+@ManyToOne
+@JoinColumn(name="utilisateur_id")
 private Utilisateur utilisateur;
 private String commentaire;
-@Transient
+@ManyToOne
+@JoinColumn(name="evenement_id")
 private Evenement evenement;
 
 public Long getId() {
