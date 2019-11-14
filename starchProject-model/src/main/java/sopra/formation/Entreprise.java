@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -25,9 +26,9 @@ public class Entreprise {
 	private String tva;
 	@Embedded
 	private Adresse adresse;
-	@Transient
+	@OneToMany(mappedBy = "entreprise")
 	private List<Groupe> groupes = new ArrayList<Groupe>();
-	@Transient
+	@OneToMany(mappedBy = "entreprise")
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 	@Transient
 	private List<Utilisateur> colaborateurs = new ArrayList<Utilisateur>();

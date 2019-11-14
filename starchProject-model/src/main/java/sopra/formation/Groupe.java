@@ -6,6 +6,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -20,9 +23,10 @@ public class Groupe {
 	private Integer version;
 	private String codeGroupe;
 	private String nom;
-	@Transient
+	@OneToMany(mappedBy = "groupe")
 	private List<Evenement> evenement = new ArrayList<Evenement>();
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise;
 	@Transient
 	private List<Gestion> utilisateurs= new ArrayList<Gestion>();

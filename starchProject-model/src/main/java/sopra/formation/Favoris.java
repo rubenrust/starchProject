@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -19,7 +20,7 @@ public class Favoris {
 	private int version;
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomActivite;
-	@Enumerated(EnumType.STRING)
+	@OneToMany(mappedBy = "favoris")
 	private LieuxEvenement nomLieu;
 	@Transient
 	private Utilisateur utilisateur;
