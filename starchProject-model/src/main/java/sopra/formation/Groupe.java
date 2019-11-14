@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Groupe")
+@Table
 public class Groupe {
 	@Id
 	@GeneratedValue

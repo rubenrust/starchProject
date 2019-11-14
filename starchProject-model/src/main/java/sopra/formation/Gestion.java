@@ -12,7 +12,7 @@ import javax.persistence.Version;
 
 
 @Entity
-@Table(name = "Gestion")
+@Table
 public class Gestion {
 	@Id
 	@GeneratedValue
