@@ -21,6 +21,7 @@ public class LieuxEvenement {
 	private Long id;
 	@Version
 	private int version;
+	private String nom;
 	private String description;
 	@Embedded
 	private Adresse adresse;
