@@ -3,7 +3,6 @@ package sopra.formation.repository.jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import sopra.formation.Gestion;
-import sopra.formation.Singleton;
 import sopra.formation.repository.IGestionRepository;
 
 @Repository
