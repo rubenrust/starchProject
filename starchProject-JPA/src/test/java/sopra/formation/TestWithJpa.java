@@ -27,9 +27,6 @@ public class TestWithJpa {
 		adresseFootSalle.setRue("26 rue dejean");
 		adresseFootSalle.setVille("Merignac");
 		adresseFootSalle.setCodePostal("33400");
-		
-		
-		
 
 		ILieuxEvenementRepository lieuxRepo = Singleton.getInstance().getLieuxRepo();
 
@@ -43,9 +40,6 @@ public class TestWithJpa {
 
 		escapeGame = lieuxRepo.save(escapeGame);
 		footSalle = lieuxRepo.save(footSalle);
-		
-		
-		
 
 		IEvenementStarchRepository evenementStarchRepo = Singleton.getInstance().getEvenementStarchRepo();
 
@@ -65,9 +59,6 @@ public class TestWithJpa {
 		laserGame.setAdresse(adresseLaserGame);
 
 		laserGame = evenementStarchRepo.save(laserGame);
-		
-		
-		
 
 		IEntreprisesRepository entrepriseRepo = Singleton.getInstance().getEntrepriseRepo();
 
@@ -85,15 +76,12 @@ public class TestWithJpa {
 		sopra.setAdresse(adresseSopra);
 
 		sopra = entrepriseRepo.save(sopra);
-		
-		
-		
-		
 
-		
-		
-		
-		
+		sGroupe groupeToto = new Groupe();
+		groupeToto.setCodeGroupe("254785");
+		groupeToto.setNom("Toto");
+
+		groupeToto = groupeRepo.save(groupeToto);
 
 		IGroupeRepository groupeRepo = Singleton.getInstance().getGroupeRepo();
 
@@ -103,10 +91,7 @@ public class TestWithJpa {
 		groupeToto.setEntreprise(sopra);
 
 		groupeToto = groupeRepo.save(groupeToto);
-		
-		
-		
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 		IEvenementRepository evenementRepo = Singleton.getInstance().getEvenementRepo();
@@ -127,9 +112,6 @@ public class TestWithJpa {
 		evenementLaser = evenementRepo.save(evenementLaser);
 		evenementEscape = evenementRepo.save(evenementEscape);
 		evenementEscape.setEntreprise(sopra);
-		
-		
-		
 
 		ICommentaireRepository commentaireRepo = Singleton.getInstance().getCommentaireRepo();
 
@@ -143,10 +125,7 @@ public class TestWithJpa {
 
 		commentaireRuben = commentaireRepo.save(commentaireRuben);
 		commentaireOriane = commentaireRepo.save(commentaireOriane);
-		
-		
 
-		
 		IUtilisateurRepository utilisateurRepo = Singleton.getInstance().getUtilisateurRepo();
 
 		Utilisateur ruben = new Utilisateur();
@@ -167,8 +146,6 @@ public class TestWithJpa {
 
 		ruben = utilisateurRepo.save(ruben);
 		oriane = utilisateurRepo.save(oriane);
-		
-		
 
 		IParticipationRepository participationRepo = Singleton.getInstance().getParticipationRepo();
 
@@ -184,8 +161,6 @@ public class TestWithJpa {
 
 		participationRuben = participationRepo.save(participationRuben);
 		participationOriane = participationRepo.save(participationOriane);
-		
-		
 
 		IGestionRepository gestionRepo = Singleton.getInstance().getGestionRepo();
 
@@ -201,18 +176,18 @@ public class TestWithJpa {
 
 		gestionOriane = gestionRepo.save(gestionOriane);
 		gestionRuben = gestionRepo.save(gestionRuben);
-		
+
 		IFavorisRepository favorisRepo = Singleton.getInstance().getFavorisRepo();
-		
+
 		Favoris favorisRuben = new Favoris();
 		favorisRuben.setUtilisateur(ruben);
 		favorisRuben.setNomActivite(NomEvenement.Escape_game);
-		
+
 		favorisRuben = favorisRepo.save(favorisRuben);
-		
+
 		escapeGame.setFavoris(favorisRuben);
 		escapeGame = lieuxRepo.save(escapeGame);
-		
-		favorisRuben =favorisRepo.save(favorisRuben);
+
+		favorisRuben = favorisRepo.save(favorisRuben);
 	}
 }

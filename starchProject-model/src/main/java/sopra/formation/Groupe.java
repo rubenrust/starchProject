@@ -27,8 +27,7 @@ public class Groupe {
 	@ManyToOne
 	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise;
-	@ManyToOne
-	@JoinColumn(name="utilisateur_id")
+	@OneToMany (mappedBy="groupe")
 	private List<Gestion> utilisateurs= new ArrayList<Gestion>();
 	
 	public Long getId() {
