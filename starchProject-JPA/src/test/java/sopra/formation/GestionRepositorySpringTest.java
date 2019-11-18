@@ -53,7 +53,6 @@ public class GestionRepositorySpringTest {
 		groupeToto.setNom("Toto");
 
 		groupeToto = groupeRepo.save(groupeToto);
-		Groupe groupeTotoFind = groupeRepo.find(groupeToto.getId());
 
 		Gestion gestionRuben = new Gestion();
 		gestionRuben.setGestion(TypeGestion.Membre);
@@ -64,7 +63,7 @@ public class GestionRepositorySpringTest {
 
 		Gestion gestionFind = gestionRepo.find(gestionRuben.getId());
 
-		Assert.assertEquals("254785", gestionRuben.getGroupe().getCodeGroupe());
+		Assert.assertEquals("254785", gestionFind.getGroupe().getCodeGroupe());
 
 	}
 
@@ -79,7 +78,6 @@ public class GestionRepositorySpringTest {
 		ruben.setTelephone("0632227403");
 		
 		ruben = utilisateurRepo.save(ruben);
-		Utilisateur rubenFind = utilisateurRepo.find(ruben.getId());
 		
 		Gestion gestionRuben = new Gestion();
 		gestionRuben.setGestion(TypeGestion.Membre);
@@ -90,7 +88,7 @@ public class GestionRepositorySpringTest {
 
 		Gestion gestionFind = gestionRepo.find(gestionRuben.getId());
 
-		Assert.assertEquals("rust", gestionRuben.getUtilisateur().getNom());
+		Assert.assertEquals("rust", gestionFind.getUtilisateur().getNom());
 
 	}
 
