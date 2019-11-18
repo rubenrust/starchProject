@@ -15,6 +15,10 @@
 	<context:component-scan
 		base-package="sopra.formation.repository.jpa" />
 
+	<!-- Charge le fichier db.properties en mémoire -->
+	<context:property-placeholder
+		location="classpath:db.properties" />
+
 	<!-- On crée la dataSource -->
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
