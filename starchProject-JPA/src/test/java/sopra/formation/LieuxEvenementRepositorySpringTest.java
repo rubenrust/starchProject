@@ -56,6 +56,8 @@ public class LieuxEvenementRepositorySpringTest {
 		Assert.assertEquals((String) "33400", adresseFootSalle.getCodePostal());
 
 		int middleNumber = lieuxEvenementRepo.findAll().size();
+		
+		Assert.assertEquals(1,middleNumber - startNumber);
 
 		lieuxEvenementRepo.delete(escapeGame);
 		escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
