@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import sopra.formation.repository.ICommentaireRepository;
+import sopra.formation.repository.IEvenementRepository;
+import sopra.formation.repository.IUtilisateurRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/application-context.xml")
@@ -15,6 +17,12 @@ public class CommentaireRepositorySpringTest {
 
 	@Autowired
 	private ICommentaireRepository commentaireRepo;
+	
+	@Autowired
+	private IUtilisateurRepository utilisateurRepo;
+	
+	@Autowired
+	private IEvenementRepository evenementRepo;
 	
 	@Test
 	public void testCommentaire() {
@@ -46,5 +54,51 @@ public class CommentaireRepositorySpringTest {
 		
 		Assert.assertNull(commentaireRubenFind);
 		
+	}
+	
+	@Test
+	public void testCommentaireWithUtilisateur() {
+		
+		Utilisateur ruben = new Utilisateur();
+		ruben.setEmail("rust.ruben@gmail.com");
+		ruben.setIdentifiant("rubenrust");
+		ruben.setNom("rust");
+		ruben.setPrenom("ruben");
+		ruben.setTelephone("0632227403");
+		
+		ruben = utilisateurRepo.save(ruben);
+		
+		Commentaire commentaireRuben = new Commentaire();
+		commentaireRuben.setCommentaire("à quelle heure ?");
+		
+		commentaireRuben.setUtilisateur(ruben);
+		
+		commentaireRuben = commentaireRepo.save(commentaireRuben);
+		
+		Commentaire commentaireRubenFind = commentaireRepo.find(commentaireRuben.getId());
+		
+		Assert.assertEquals("rubenrust", commentaireRubenFind.getUtilisateur().getIdentifiant());
+	}
+	
+	@Test
+	public void testCommentaireWithEvenement() {
+		
+		Evenement evenementEscape = new Evenement();
+		evenementEscape.setNbParticipantMax(25);
+		evenementEscape.setNomEvenement(NomEvenement.Escape_game);
+		evenementEscape.setTitre("escape game");
+		
+		evenementEscape = evenementRepo.save(evenementEscape);
+		
+		Commentaire commentaireRuben = new Commentaire();
+		commentaireRuben.setCommentaire("à quelle heure ?");
+		
+		commentaireRuben.setEvenement(evenementEscape);
+		
+		commentaireRuben = commentaireRepo.save(commentaireRuben);
+		
+		Commentaire commentaireRubenFind = commentaireRepo.find(commentaireRuben.getId());
+		
+		Assert.assertEquals("escape game", commentaireRubenFind.getEvenement().getTitre());
 	}
 }
