@@ -32,6 +32,8 @@ public class ParticipationRepositorySpringTest {
 		Assert.assertEquals(TypeParticipation.Participant, participationRuben.getType());
 
 		int middleNumber = participationRepo.findAll().size();
+		
+		Assert.assertEquals(1,middleNumber - startNumber);
 
 		participationRepo.delete(participationRuben);
 		participationRubenFind = participationRepo.find(participationRuben.getId());

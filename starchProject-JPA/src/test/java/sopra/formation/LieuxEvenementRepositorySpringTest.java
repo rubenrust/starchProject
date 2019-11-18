@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import sopra.formation.repository.IFavorisRepository;
 import sopra.formation.repository.ILieuxEvenementRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -15,9 +16,11 @@ public class LieuxEvenementRepositorySpringTest {
 
 	@Autowired
 	private ILieuxEvenementRepository lieuxEvenementRepo;
+	@Autowired
+	private IFavorisRepository favorisRepo;
 
 	@Test
-	public void testGroupe() {
+	public void testLieuxEvenement() {
 
 		int startNumber = lieuxEvenementRepo.findAll().size();
 
@@ -57,6 +60,8 @@ public class LieuxEvenementRepositorySpringTest {
 
 		int middleNumber = lieuxEvenementRepo.findAll().size();
 
+		Assert.assertEquals(2, middleNumber - startNumber);
+
 		lieuxEvenementRepo.delete(escapeGame);
 		escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
 		Assert.assertNull(escapeGameFind);
@@ -64,6 +69,33 @@ public class LieuxEvenementRepositorySpringTest {
 		lieuxEvenementRepo.delete(footSalle);
 		footSalleFind = lieuxEvenementRepo.find(footSalle.getId());
 		Assert.assertNull(footSalleFind);
+
+	}
+
+	@Test
+	public void testLieuxEvenementWithFavoris() {
+
+		Favoris escape = new Favoris();
+		escape.setNomActivite(NomEvenement.Escape_game);
+
+		escape = favorisRepo.save(escape);
+
+		Adresse adresseEscapeGame = new Adresse();
+		adresseEscapeGame.setRue("28 rue dupuis");
+		adresseEscapeGame.setVille("Bordeaux");
+		adresseEscapeGame.setCodePostal("33000");
+
+		LieuxEvenement escapeGame = new LieuxEvenement();
+		escapeGame.setAdresse(adresseEscapeGame);
+		escapeGame.setDescription("escape game à bordeaux");
+
+		escapeGame.setFavoris(escape);
+
+		escapeGame = lieuxEvenementRepo.save(escapeGame);
+
+		LieuxEvenement escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
+
+		Assert.assertEquals(NomEvenement.Escape_game, escapeGame.getFavoris().getNomActivite());
 
 	}
 
