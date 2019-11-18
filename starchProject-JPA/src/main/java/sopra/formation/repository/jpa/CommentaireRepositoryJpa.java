@@ -50,4 +50,8 @@ public class CommentaireRepositoryJpa implements ICommentaireRepository {
 
 	}
 
+	public CommentaireRepositoryJpa() {
+		super();
+	}
+
 }
