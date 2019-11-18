@@ -31,6 +31,8 @@ public class GestionRepositorySpringTest {
 		Assert.assertEquals(TypeGestion.Membre, gestionRuben.getGestion());
 
 		int middleNumber = gestionRepo.findAll().size();
+		
+		Assert.assertEquals(1,middleNumber - startNumber);
 
 		gestionRepo.delete(gestionRuben);
 		gestionRubenFind = gestionRepo.find(gestionRuben.getId());

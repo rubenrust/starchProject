@@ -38,6 +38,8 @@ public class GroupeRepositorySpringTest {
 		Assert.assertEquals((String) "Toto", groupeToto.getNom());
 
 		int middleNumber = groupeRepo.findAll().size();
+		
+		Assert.assertEquals(1,middleNumber - startNumber);
 
 		groupeRepo.delete(groupeToto);
 
