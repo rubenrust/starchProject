@@ -4,129 +4,47 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import sopra.formation.Participation;
 import sopra.formation.Singleton;
 import sopra.formation.Utilisateur;
 import sopra.formation.repository.IUtilisateurRepository;
 
+@Repository
+@Transactional
 public class UtilisateurRepositoryJpa implements IUtilisateurRepository {
 
+	@PersistenceContext
+	private EntityManager em;
+
 	@Override
+	@Transactional(readOnly = true)
 	public List<Utilisateur> findAll() {
-		List<Utilisateur> list = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+		TypedQuery<Utilisateur> query = em.createQuery("from Utilisateur", Utilisateur.class);
 
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			TypedQuery<Utilisateur> query = em.createQuery("from Utilisateur", Utilisateur.class);
-
-			list = query.getResultList();
-
-			tx.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		return list;
+		return query.getResultList();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Utilisateur find(Long id) {
-		Utilisateur obj = null;
-
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			obj = em.find(Utilisateur.class, id);
-
-			tx.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		return obj;
+		return em.find(Utilisateur.class, id);
 	}
 
 	@Override
 	public Utilisateur save(Utilisateur obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			obj = em.merge(obj);
-
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-		return obj;
+		return em.merge(obj);
 	}
 
 	@Override
 	public void delete(Utilisateur obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			em.remove(em.merge(obj));
-
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		em.remove(em.merge(obj));
 
 	}
 }

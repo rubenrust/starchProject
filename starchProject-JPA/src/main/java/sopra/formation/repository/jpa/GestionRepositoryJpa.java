@@ -4,130 +4,47 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import sopra.formation.Gestion;
 import sopra.formation.Singleton;
 import sopra.formation.repository.IGestionRepository;
 
+@Repository
+@Transactional
+
 public class GestionRepositoryJpa implements IGestionRepository {
 
+	@PersistenceContext
+	private EntityManager em;
+
 	@Override
+	@Transactional(readOnly = true)
 	public List<Gestion> findAll() {
-		List<Gestion> list = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+		TypedQuery<Gestion> query = em.createQuery("from Gestion", Gestion.class);
 
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			TypedQuery<Gestion> query = em.createQuery("from Gestion", Gestion.class);
-
-			list = query.getResultList();
-
-			tx.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		return list;
+		return query.getResultList();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Gestion find(Long id) {
-		Gestion obj = null;
-
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			obj = em.find(Gestion.class, id);
-
-			tx.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		return obj;
+		return em.find(Gestion.class, id);
 	}
 
 	@Override
 	public Gestion save(Gestion obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
 
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			obj = em.merge(obj);
-
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-		return obj;
+		return em.merge(obj);
 	}
 
 	@Override
 	public void delete(Gestion obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			em.remove(em.merge(obj));
-
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
+		em.remove(em.merge(obj));
 	}
-
 }

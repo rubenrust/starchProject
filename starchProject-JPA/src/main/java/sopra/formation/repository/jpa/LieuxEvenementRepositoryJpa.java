@@ -4,130 +4,48 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import sopra.formation.Groupe;
 import sopra.formation.LieuxEvenement;
 import sopra.formation.Singleton;
 import sopra.formation.repository.ILieuxEvenementRepository;
 
+@Repository
+@Transactional
 public class LieuxEvenementRepositoryJpa implements ILieuxEvenementRepository {
 
+	@PersistenceContext
+	private EntityManager em;
+
 	@Override
+	@Transactional(readOnly = true)
 	public List<LieuxEvenement> findAll() {
-		List<LieuxEvenement> list = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+		TypedQuery<LieuxEvenement> query = em.createQuery("from LieuxEvenement", LieuxEvenement.class);
 
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			TypedQuery<LieuxEvenement> query = em.createQuery("from LieuxEvenement", LieuxEvenement.class);
-
-			list = query.getResultList();
-
-			tx.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		return list;
+		return query.getResultList();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public LieuxEvenement find(Long id) {
-		LieuxEvenement obj = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			obj = em.find(LieuxEvenement.class, id);
-
-			tx.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
-		return obj;
+		return em.find(LieuxEvenement.class, id);
 	}
 
 	@Override
 	public LieuxEvenement save(LieuxEvenement obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			obj = em.merge(obj);
-
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-		return obj;
+		return em.merge(obj);
 	}
 
 	@Override
 	public void delete(LieuxEvenement obj) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try {
-			em = Singleton.getInstance().getEmf().createEntityManager();
-			tx = em.getTransaction();
-
-			tx.begin();
-
-			em.remove(em.merge(obj));
-
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
+		em.remove(em.merge(obj));
 	}
 
 }
