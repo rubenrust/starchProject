@@ -1,5 +1,6 @@
 package sopra.formation;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,22 @@ public class GestionRepositorySpringTest {
 	@Test
 	public void testGestion() {
 		
+		int startNumber = gestionRepo.findAll().size();
 		
+		Gestion gestionRuben = new Gestion();
+		gestionRuben.setGestion(TypeGestion.Membre);
+		
+		
+		gestionRuben = gestionRepo.save(gestionRuben);
+		Gestion gestionRubenFind = gestionRepo.find(gestionRuben.getId());
+		
+		Assert.assertEquals(TypeGestion.Membre, gestionRuben.getGestion());
+
+		int middleNumber = gestionRepo.findAll().size();
+
+		gestionRepo.delete(gestionRuben);
+		gestionRubenFind = gestionRepo.find(gestionRuben.getId());
+		Assert.assertNull(gestionRubenFind);
 		
 	}
 }

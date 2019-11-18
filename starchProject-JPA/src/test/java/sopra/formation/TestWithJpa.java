@@ -77,7 +77,7 @@ public class TestWithJpa {
 
 		sopra = entrepriseRepo.save(sopra);
 
-		sGroupe groupeToto = new Groupe();
+		Groupe groupeToto = new Groupe();
 		groupeToto.setCodeGroupe("254785");
 		groupeToto.setNom("Toto");
 
