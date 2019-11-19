@@ -1,0 +1,53 @@
+
+findUtilisateurById : select u from utilisateur u where u.id = :id
+
+findGroupesByUtilisateurID : select g.groupe from gestion g where g.utilisateur.id = :id and g.groupe.entreprise.id = :id
+
+findEventParticipeByUtilisateurId : select p.evenement from participation p where p.utilisateur.id = :id
+
+findFavorisByUtilisateursId : select uf from utilisateur u join u.favoris uf where u.id = :id
+
+formulaire pre-rempli info user : select u from utilisateur u where u.id = :id
+
+idem entreprise : select e from entreprise e where e.id = :id
+
+filtres calendar mettre des OU a la place des AND: 
+	select e
+		from evenement e join e.participation ep 
+		join ep.utilisateur epu
+		join epu.favoris
+		where e.entreprise.id = :id
+		and e.groupe.id = :id
+		and e.statut = :statut
+		and e.nomEvenement = :nomEvenement
+		and e.typeEvenement = :typeEvenement
+		and epu.favoris.nomActivite = :nomActivite
+		and epu.favoris.lieuxEvenement = :lieuxEvenement
+		and epu.id = :id
+		and ep.type = participant
+		and ep.type = interesse
+		
+findEventByGroup : select e
+						from evenement e join e.participation ep join ep.utilisateur
+						where e.groupe.id = :id
+						and e.entreprise.id = :id
+						and ep.utilisateur.id = :id
+						
+findEventByUtilisateurId : select e from evenement e where e.id = :id
+
+findCommentaireByEvent : select ec.commentaire from evenement e join e.commentaire ec where e.id = :id
+
+FindInteresseByEventId : select p.utilisateur from participation p where p.evenement.id = :id and p.type = interesse
+
+FindParticipant&OrgaByEventId : select p.utilisateur from participation p where p.evenement.id = :id and (p.type = participant || p.type = organisateur)
+
+FindMembreGroupeByGroupeId : select g.utilisateur from gestion g where g.groupe.id = :id
+
+FindGroupe : select g from groupe g where g.id = :id
+
+findLieuxEvenement : select l.nomLieu from lieuxEvenement l
+
+findEventStarchByTitre : select es from evenementStarch es where es.titre = :titre
+
+findAllEventStarch : select es from evenementStarch es
+
