@@ -65,27 +65,28 @@ public class FavorisRepositorySpringTest {
 	Assert.assertEquals("", FavorisArnaudFind.getUtilisateur().getNom());
 	}
 	
-	@Test
-	public void testFavorisWithNomLieux() {
-		
-		
-		LieuxEvenement escapeGame = new LieuxEvenement();
-		escapeGame.setDescription("Escape game de fou à Merignac");
-		LieuxEvenement footSalle = new LieuxEvenement();
-
-		escapeGame = lieuxEvenementRepo.save(escapeGame);
-		footSalle = lieuxEvenementRepo.save(footSalle);
-		
-		
 	
-	Favoris favorisArnaud = new Favoris();
-	favorisArnaud.setNomActivite(NomEvenement.Escape_game);
-//	favorisArnaud.setLieuxEvenement(0);
+//	@Test
+//	public void testFavorisWithNomLieux() {
+//		
+//		
+//		LieuxEvenement escapeGame = new LieuxEvenement();
+//		escapeGame.setDescription("Escape game de fou à Merignac");
+//		LieuxEvenement footSalle = new LieuxEvenement();
+//
+//		escapeGame = lieuxEvenementRepo.save(escapeGame);
+//		footSalle = lieuxEvenementRepo.save(footSalle);
+//		
+//		
 //	
-	favorisArnaud = favorisRepo.save(favorisArnaud);
-	Favoris FavorisArnaudFind = favorisRepo.find(favorisArnaud.getId());
-	Assert.assertEquals("", FavorisArnaudFind.getLieuxEvenement().get(0));
-	Assert.assertEquals("", FavorisArnaudFind.getLieuxEvenement().get(1));
-	
-}
+//	Favoris favorisArnaud = new Favoris();
+//	favorisArnaud.setNomActivite(NomEvenement.Escape_game);
+//
+//	
+//	favorisArnaud = favorisRepo.save(favorisArnaud);
+//	Favoris FavorisArnaudFind = favorisRepo.find(favorisArnaud.getId());
+//	Assert.assertEquals("", FavorisArnaudFind.getLieuxEvenement().get(0));
+//	Assert.assertEquals("", FavorisArnaudFind.getLieuxEvenement().get(1));
+//	
+//}
 }
