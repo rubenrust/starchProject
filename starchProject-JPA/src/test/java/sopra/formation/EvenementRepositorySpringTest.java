@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import sopra.formation.repository.IEntreprisesRepository;
 import sopra.formation.repository.IEvenementRepository;
 import sopra.formation.repository.IEvenementStarchRepository;
+import sopra.formation.repository.IGroupeRepository;
 import sopra.formation.repository.ILieuxEvenementRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,6 +28,12 @@ public class EvenementRepositorySpringTest {
 	
 	@Autowired
 	private ILieuxEvenementRepository lieuxEvenementRepo;
+	
+	@Autowired
+	private IEntreprisesRepository entrepriseRepo;
+	
+	@Autowired
+	private IGroupeRepository groupeRepo;
 	
 	@Test
 	public void testEvenement() throws ParseException {
@@ -133,6 +141,69 @@ public class EvenementRepositorySpringTest {
 		
 		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
 		
-		Assert.assertEquals("foot en salle à bordeaux", evenementEscape.getLieuxEvenement().getDescription());
+		Assert.assertEquals("foot en salle à bordeaux", evenementEscapeFind.getLieuxEvenement().getDescription());
+	}
+	
+	@Test
+	public void testEvenementWithEntreprise() throws ParseException {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		
+		Entreprise sopra = new Entreprise();
+		sopra.setNom("sopra steria");
+		sopra.setCodeEntreprise("241547");
+		sopra.setSiret("4715564558855");
+		sopra.setTva("4552662555");
+
+		Adresse adresseSopra = new Adresse();
+		adresseSopra.setRue("24 rue dure");
+		adresseSopra.setVille("Merignac");
+		adresseSopra.setCodePostal("33700");
+
+		sopra.setAdresse(adresseSopra);
+
+		sopra = entrepriseRepo.save(sopra);
+		
+		Evenement evenementEscape = new Evenement();
+		evenementEscape.setNbParticipantMax(25);
+		evenementEscape.setNomEvenement(NomEvenement.Escape_game);
+		evenementEscape.setTitre("escape game");
+		evenementEscape.setDate(sdf.parse("09-06-2018"));
+		evenementEscape.setDeadline(sdf.parse("07-06-2018"));
+		evenementEscape.setPrix(15);
+		evenementEscape.setRecurrence(Recurrence.Monthly);
+		
+		evenementEscape.setEntreprise(sopra);
+		
+		evenementEscape = evenementRepo.save(evenementEscape);
+		
+		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		
+		Assert.assertEquals("sopra steria", evenementEscapeFind.getEntreprise().getNom());
+	}
+	
+	@Test
+	public void testEvenementWithGroupe(){
+		
+		Groupe groupeToto = new Groupe();
+		groupeToto.setCodeGroupe("254785");
+		groupeToto.setNom("Toto");
+
+		groupeToto = groupeRepo.save(groupeToto);
+		
+		Evenement evenementEscape = new Evenement();
+		evenementEscape.setNbParticipantMax(25);
+		evenementEscape.setNomEvenement(NomEvenement.Escape_game);
+		evenementEscape.setTitre("escape game");
+		evenementEscape.setPrix(15);
+		evenementEscape.setRecurrence(Recurrence.Monthly);
+		
+		evenementEscape.setGroupe(groupeToto);
+		
+		evenementEscape = evenementRepo.save(evenementEscape);
+		
+		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		
+		Assert.assertEquals("Toto", evenementEscapeFind.getGroupe().getNom());
 	}
 }
