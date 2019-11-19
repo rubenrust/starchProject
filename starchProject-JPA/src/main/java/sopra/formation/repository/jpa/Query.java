@@ -1,3 +1,4 @@
+package sopra.formation.repository.jpa;
 
 findUtilisateurById : select u from utilisateur u where u.id = :id
 
