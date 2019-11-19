@@ -80,25 +80,27 @@ public class CommentaireRepositorySpringTest {
 		Assert.assertEquals("rubenrust", commentaireRubenFind.getUtilisateur().getIdentifiant());
 	}
 	
-	@Test
-	public void testCommentaireWithEvenement() {
-		
-		Evenement evenementEscape = new Evenement();
-		evenementEscape.setNbParticipantMax(25);
-		evenementEscape.setNomEvenement(NomEvenement.Escape_game);
-		evenementEscape.setTitre("escape game");
-		
-		evenementEscape = evenementRepo.save(evenementEscape);
-		
-		Commentaire commentaireRuben = new Commentaire();
-		commentaireRuben.setCommentaire("à quelle heure ?");
-		
-		commentaireRuben.setEvenement(evenementEscape);
-		
-		commentaireRuben = commentaireRepo.save(commentaireRuben);
-		
-		Commentaire commentaireRubenFind = commentaireRepo.find(commentaireRuben.getId());
-		
-		Assert.assertEquals("escape game", commentaireRubenFind.getEvenement().getTitre());
-	}
+	
+//	@Test
+//	public void testCommentaireWithEvenement() {
+//		
+//		Evenement evenementEscape = new Evenement();
+//		evenementEscape.setNbParticipantMax(25);
+//		evenementEscape.setNomEvenement(NomEvenement.Escape_game);
+//		evenementEscape.setTitre("escape game");
+//		
+//		evenementEscape = evenementRepo.save(evenementEscape);
+//		
+//		Commentaire commentaireRuben = new Commentaire();
+//		commentaireRuben.setCommentaire("à quelle heure ?");
+//		
+//		commentaireRuben.setEvenement(evenementEscape);
+//		
+//		commentaireRuben = commentaireRepo.save(commentaireRuben);
+//		
+//		Commentaire commentaireRubenFind = commentaireRepo.find(commentaireRuben.getId());
+//		
+//		Assert.assertEquals("escape game", commentaireRubenFind.getEvenement().getTitre());
+//	}
+	
 }
