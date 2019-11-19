@@ -80,6 +80,7 @@ public class CommentaireRepositorySpringTest {
 		Assert.assertEquals("rubenrust", commentaireRubenFind.getUtilisateur().getIdentifiant());
 	}
 	
+	
 	@Test
 	public void testCommentaireWithEvenement() {
 		
@@ -101,4 +102,5 @@ public class CommentaireRepositorySpringTest {
 		
 		Assert.assertEquals("escape game", commentaireRubenFind.getEvenement().getTitre());
 	}
+	
 }
