@@ -62,7 +62,7 @@ public class FavorisRepositorySpringTest {
 	
 	favorisArnaud = favorisRepo.save(favorisArnaud);
 	Favoris FavorisArnaudFind = favorisRepo.find(favorisArnaud.getId());
-	Assert.assertEquals("", FavorisArnaudFind.getUtilisateur().getNom());
+	Assert.assertEquals("MICHEL", FavorisArnaudFind.getUtilisateur().getNom());
 	}
 	
 	
