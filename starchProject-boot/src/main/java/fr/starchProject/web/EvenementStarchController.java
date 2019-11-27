@@ -14,44 +14,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.starchProject.model.EvenementStarch;
+import fr.starchProject.repository.IEvenementStarchRepository;
 import sopra.formation.model.Evaluation;
 import sopra.formation.model.Views;
 import sopra.formation.repository.IEvaluationRepository;
 
 @RestController
-@RequestMapping("/evaluation")
+@RequestMapping("/evenementStarch")
 public class EvenementStarchController {
 	@Autowired
-	private IEvaluationRepository evaluationRepo;
+	private IEvenementStarchRepository evenementStarchRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewEvaluation.class)
-	public List<Evaluation> list() {
-		List<Evaluation> evaluations = evaluationRepo.findAll();
+	@JsonView(Views.ViewEvenementStarch.class)
+	public List<EvenementStarch> list() {
+		List<EvenementStarch> evenementStarchs = evenementStarchRepo.findAll();
 
-		return evaluations;
+		return evenementStarchs;
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewEvaluationDetail.class)
-	public Evaluation find(@PathVariable Long id) {
-		Evaluation evaluation = evaluationRepo.findWithStagiaire(id);
+	@JsonView(Views.ViewEvenementStarchDetail.class)
+	public EvenementStarch find(@PathVariable Long id) {
+		EvenementStarch evenementStarch = evenementStarchRepo.find(id);
 
-		return evaluation;
+		return evenementStarch;
 	}
 
 	@PostMapping("")
-	public Evaluation create(@RequestBody Evaluation evaluation) {
-		return evaluationRepo.save(evaluation);
+	public EvenementStarch create(@RequestBody EvenementStarch evenementStarch) {
+		return evenementStarchRepo.save(evenementStarch);
 	}
 
 	@PutMapping("/{id}")
-	public Evaluation update(@RequestBody Evaluation evaluation, @PathVariable Long id) {
-		return evaluationRepo.save(evaluation);
+	public EvenementStarch update(@RequestBody EvenementStarch evenementStarch, @PathVariable Long id) {
+		return evenementStarchRepo.save(evenementStarch);
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		evaluationRepo.deleteById(id);
+		evenementStarchRepo.delete(obj);
 	}
 }

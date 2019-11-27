@@ -22,45 +22,45 @@ import sopra.formation.repository.IPersonneRepository;
 @RequestMapping("/stagiaire")
 public class CommentaireController {
 	@Autowired
-	private IPersonneRepository personneRepo;
+	private ICommentaireRepository commentaireRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewStagiaire.class)
-	public List<Stagiaire> list() {
-		List<Stagiaire> stagiaires = personneRepo.findAllStagiaire();
-		return stagiaires;
+	public List<Commentaire> list() {
+		List<Commentaire> commentaires = commentaireRepo.findAllStagiaire();
+		return commentaires;
 	}
 
 	@GetMapping("/{id}")
 	@JsonView(Views.ViewStagiaire.class)
-	public Stagiaire find(@PathVariable Long id) {
-		Stagiaire stagiaire = (Stagiaire) personneRepo.findById(id).get();
+	public Commentaire find(@PathVariable Long id) {
+		Commentaire commentaire = (Commentaire) commentaireRepo.find(id).get();
 
-		return stagiaire;
+		return commentaire;
 	}
 	
 	@GetMapping("/{id}/detail")
 	@JsonView(Views.ViewStagiaireDetail.class)
-	public Stagiaire findDetail(@PathVariable Long id) {
-		Stagiaire stagiaire = (Stagiaire) personneRepo.findWithFiliere(id);
+	public Commentaire findDetail(@PathVariable Long id) {
+		Commentaire commentaire = (Commentaire) commentaireRepo.findWithFiliere(id);
 
-		return stagiaire;
+		return commentaire;
 	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewStagiaire.class)
-	public Stagiaire create(@RequestBody Stagiaire stagiaire) {
-		return personneRepo.save(stagiaire);
+	public Commentaire create(@RequestBody Commentaire commentaire) {
+		return commentaireRepo.save(commentaire);
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewStagiaire.class)
-	public Stagiaire update(@RequestBody Stagiaire stagiaire, @PathVariable Long id) {
-		return personneRepo.save(stagiaire);
+	public Commentaire update(@RequestBody Commentaire commentaire, @PathVariable Long id) {
+		return commentaireRepo.save(commentaire);
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		personneRepo.deleteById(id);
+		commentaireRepo.deleteById(id);
 	}
 }

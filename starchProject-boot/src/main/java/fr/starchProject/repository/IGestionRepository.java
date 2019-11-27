@@ -1,7 +1,9 @@
 package fr.starchProject.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import fr.starchProject.model.Gestion;
 
-public interface IGestionRepository extends IRepository <Gestion,Long>{
+public interface IGestionRepository extends JpaRepository <Gestion,Long>{
 
 }
