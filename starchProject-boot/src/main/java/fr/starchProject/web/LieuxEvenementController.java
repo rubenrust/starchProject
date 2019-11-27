@@ -39,14 +39,6 @@ public class LieuxEvenementController {
 		return lieuxevenement;
 	}
 
-//	@GetMapping("/{id}/detail")
-//	@JsonView(Views.ViewLieuxEvenementDetail.class)
-//	public LieuxEvenement findDetail(@PathVariable Long id) {
-//		LieuxEvenement lieuxevenement = (LieuxEvenement) lieuxRepo.find
-//
-//		return lieuxevenement;
-//	}
-
 	@PostMapping("")
 	@JsonView(Views.ViewLieuxEvenement.class)
 	public LieuxEvenement create(@RequestBody LieuxEvenement lieuxevenement) {
