@@ -1,9 +1,16 @@
 package fr.starchProject.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import fr.starchProject.model.Evenement;
 
 public interface IEvenementRepository extends JpaRepository<Evenement, Long> {
+
+	@Query("select e from Evenement e join e.entreprise en where en.id = :id")
+	List<Evenement> findAllByEntreprise(@Param("id") Long id);
 
 }
