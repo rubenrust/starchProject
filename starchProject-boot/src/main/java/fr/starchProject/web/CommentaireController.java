@@ -40,13 +40,6 @@ public class CommentaireController {
 		return commentaire;
 	}
 	
-	@GetMapping("/{id}/detail")
-	@JsonView(Views.ViewCommentaireDetail.class)
-	public Commentaire findDetail(@PathVariable Long id) {
-		Commentaire commentaire = (Commentaire) commentaireRepo.findWithUtilisateur(id);
-
-		return commentaire;
-	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewCommentaire.class)

@@ -7,6 +7,5 @@ import org.springframework.data.repository.query.Param;
 import fr.starchProject.model.Commentaire;
 
 public interface ICommentaireRepository extends JpaRepository<Commentaire, Long> {
-	@Query("select distinct c from Commentaire c join fetch c.utilisateur u where c.id = :id")
-	Commentaire findWithUtilisateur(@Param("id") Long id);
+
 }
