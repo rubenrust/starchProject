@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.starchProject.model.Commentaire;
+import fr.starchProject.repository.ICommentaireRepository;
 import sopra.formation.model.Stagiaire;
 import sopra.formation.model.Views;
 import sopra.formation.repository.IPersonneRepository;
@@ -25,22 +27,22 @@ public class CommentaireController {
 	private ICommentaireRepository commentaireRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewStagiaire.class)
+	@JsonView(Views.ViewCommentaire.class)
 	public List<Commentaire> list() {
-		List<Commentaire> commentaires = commentaireRepo.findAllStagiaire();
+		List<Commentaire> commentaires = commentaireRepo.findAll();
 		return commentaires;
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewStagiaire.class)
+	@JsonView(Views.ViewCommentaire.class)
 	public Commentaire find(@PathVariable Long id) {
-		Commentaire commentaire = (Commentaire) commentaireRepo.find(id).get();
+		Commentaire commentaire = (Commentaire) commentaireRepo.findById(id).get();
 
 		return commentaire;
 	}
 	
 	@GetMapping("/{id}/detail")
-	@JsonView(Views.ViewStagiaireDetail.class)
+	@JsonView(Views.ViewCommentaireDetail.class)
 	public Commentaire findDetail(@PathVariable Long id) {
 		Commentaire commentaire = (Commentaire) commentaireRepo.findWithFiliere(id);
 
@@ -48,13 +50,13 @@ public class CommentaireController {
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewStagiaire.class)
+	@JsonView(Views.ViewCommentaire.class)
 	public Commentaire create(@RequestBody Commentaire commentaire) {
 		return commentaireRepo.save(commentaire);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewStagiaire.class)
+	@JsonView(Views.ViewCommentaire.class)
 	public Commentaire update(@RequestBody Commentaire commentaire, @PathVariable Long id) {
 		return commentaireRepo.save(commentaire);
 	}
