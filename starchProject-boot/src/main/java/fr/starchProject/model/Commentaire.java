@@ -8,18 +8,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table
 public class Commentaire {
 @Id
 @GeneratedValue
+@JsonView(Views.ViewCommon.class)
 private Long id;
 @Version
+@JsonView(Views.ViewCommon.class)
 private Integer version;
+@JsonView(Views.ViewCommon.class)
+private String commentaire;
 @ManyToOne
 @JoinColumn(name="utilisateur_id")
 private Utilisateur utilisateur;
-private String commentaire;
 @ManyToOne
 @JoinColumn(name="evenement_id")
 private Evenement evenement;

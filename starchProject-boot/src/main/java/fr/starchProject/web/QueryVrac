@@ -1,5 +1,3 @@
-package sopra.formation.repository.jpa;
-
 findUtilisateurById : select u from utilisateur u where u.id = :id
 
 findGroupesByUtilisateurID : select g.groupe from gestion g where g.utilisateur.id = :id and g.groupe.entreprise.id = :id
