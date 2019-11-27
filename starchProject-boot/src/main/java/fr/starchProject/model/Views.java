@@ -13,4 +13,10 @@ public class Views {
 	}
 	public static class ViewCommentaireDetail extends ViewCommentaire{
 	}
+	
+	public static class ViewFavoris extends ViewCommon {
+	}
+	
+	public static class ViewUtilisateur extends ViewCommon {
+	}
 }
