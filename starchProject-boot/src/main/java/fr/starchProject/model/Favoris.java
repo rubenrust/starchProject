@@ -1,8 +1,5 @@
 package fr.starchProject.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -29,11 +26,14 @@ public class Favoris {
 	@Enumerated(EnumType.STRING)
 	@JsonView(Views.ViewCommon.class)
 	private NomEvenement nomActivite;
-	@OneToMany(mappedBy = "favoris")
-	private List<LieuxEvenement> lieuxEvenement = new ArrayList<LieuxEvenement>();
+	@OneToOne
+	@JoinColumn(name ="lieuxEvenement_id")
+	private LieuxEvenement lieuxEvenement;
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
+	@JsonView(Views.ViewCommon.class)
+	private TypeFavoris typeFavoris;
 	
 	public Favoris() {
 		super();
@@ -51,6 +51,14 @@ public class Favoris {
 		return version;
 	}
 
+	public LieuxEvenement getLieuxEvenement() {
+		return lieuxEvenement;
+	}
+
+	public void setLieuxEvenement(LieuxEvenement lieuxEvenement) {
+		this.lieuxEvenement = lieuxEvenement;
+	}
+
 	public void setVersion(int version) {
 		this.version = version;
 	}
@@ -63,13 +71,6 @@ public class Favoris {
 		this.nomActivite = nomActivite;
 	}
 
-	public List<LieuxEvenement> getLieuxEvenement() {
-		return lieuxEvenement;
-	}
-
-	public void setLieuxEvenement(List<LieuxEvenement> lieuxEvenement) {
-		this.lieuxEvenement = lieuxEvenement;
-	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;

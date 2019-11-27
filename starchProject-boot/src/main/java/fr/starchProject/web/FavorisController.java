@@ -55,4 +55,6 @@ public class FavorisController {
 	public void delete(@PathVariable Long id) {
 		favorisRepo.deleteById(id);
 	}
+	
+	
 }
