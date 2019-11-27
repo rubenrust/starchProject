@@ -46,7 +46,4 @@ FindGroupe : select g from groupe g where g.id = :id
 
 findLieuxEvenement : select l.nomLieu from lieuxEvenement l
 
-findEventStarchByTitre : select es from evenementStarch es where es.titre = :titre
-
-findAllEventStarch : select es from evenementStarch es
 
