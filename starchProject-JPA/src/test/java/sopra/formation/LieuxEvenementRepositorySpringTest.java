@@ -95,7 +95,7 @@ public class LieuxEvenementRepositorySpringTest {
 
 		LieuxEvenement escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
 
-		Assert.assertEquals(NomEvenement.Escape_game, escapeGame.getFavoris().getNomActivite());
+		Assert.assertEquals(NomEvenement.Escape_game, escapeGameFind.getFavoris().getNomActivite());
 
 	}
 
