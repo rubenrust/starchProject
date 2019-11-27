@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.starchProject.model.Commentaire;
 import fr.starchProject.model.Evenement;
 import fr.starchProject.model.Views;
+import fr.starchProject.repository.ICommentaireRepository;
 import fr.starchProject.repository.IEvenementRepository;
 
 @RestController
@@ -24,6 +26,9 @@ public class EvenementController {
 
 	@Autowired
 	private IEvenementRepository evenementRepo;
+
+	@Autowired
+	private ICommentaireRepository commentaireRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewEvenement.class)
@@ -39,13 +44,21 @@ public class EvenementController {
 		return evenement;
 	}
 
-//	@GetMapping("/{id}/detail")
-//	@JsonView(Views.ViewEvenementDetail.class)
-//	public Evenement findDetail(@PathVariable Long id) {
-//		Evenement evenement = (Evenement) evenementRepo.find
-//
-//		return evenement;
-//	}
+	@GetMapping("/{id}/commentaires")
+	@JsonView(Views.ViewEvenementDetail.class)
+	public List<Commentaire> findCommentaires(@PathVariable Long id) {
+		List<Commentaire> commentaires = commentaireRepo.findAllByEvenement(id);
+
+		return commentaires;
+	}
+
+	@GetMapping("/{id}/entreprise")
+	@JsonView(Views.ViewEvenementDetail.class)
+	public List<Evenement> findEntreprises(@PathVariable Long id) {
+		List<Evenement> evenements = evenementRepo.findAllByEntreprise(id);
+
+		return evenements;
+	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewEvenement.class)

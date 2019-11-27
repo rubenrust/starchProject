@@ -11,25 +11,39 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
+
 @Entity
 @Table(name = "Entreprise")
 public class Entreprise {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
+	@JsonView(Views.ViewCommon.class)
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
+	@JsonView(Views.ViewCommon.class)
 	private String codeEntreprise;
+	@JsonView(Views.ViewCommon.class)
 	private String siret;
+	@JsonView(Views.ViewCommon.class)
 	private String tva;
 	@Embedded
+	@JsonView(Views.ViewCommon.class)
 	private Adresse adresse;
 	@OneToMany(mappedBy = "entreprise")
+	@JsonView(Views.ViewEntrepriseGroupe.class)
 	private List<Groupe> groupes = new ArrayList<Groupe>();
 	@OneToMany(mappedBy = "entreprise")
+	@JsonView(Views.ViewEntrepriseEvenement.class)
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 	@OneToMany(mappedBy="entreprise")
+	@JsonView(Views.ViewEntrepriseUtilisateur.class)
 	private List<Utilisateur> collaborateurs = new ArrayList<Utilisateur>();
 
 

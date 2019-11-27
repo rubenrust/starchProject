@@ -8,7 +8,7 @@ findFavorisByUtilisateursId : select uf from utilisateur u join u.favoris uf whe
 
 formulaire pre-rempli info user : select u from utilisateur u where u.id = :id
 
-idem entreprise : select e from entreprise e where e.id = :id
+//idem entreprise : select e from entreprise e where e.id = :id
 
 filtres calendar mettre des OU a la place des AND: 
 	select e
@@ -44,9 +44,4 @@ FindMembreGroupeByGroupeId : select g.utilisateur from gestion g where g.groupe.
 
 FindGroupe : select g from groupe g where g.id = :id
 
-findLieuxEvenement : select l.nomLieu from lieuxEvenement l
-
-findEventStarchByTitre : select es from evenementStarch es where es.titre = :titre
-
-findAllEventStarch : select es from evenementStarch es
 

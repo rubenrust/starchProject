@@ -3,6 +3,20 @@ package fr.starchProject.model;
 public class Views {
 
 	public static class ViewCommon {
+		
+	}
+	
+	public static class ViewEntreprise extends ViewCommon{	
+	}
+	public static class ViewEntrepriseEvenement extends ViewEntreprise {
+		
+	}
+	public static class ViewEntrepriseGroupe extends ViewEntreprise {
+		
+	}
+	
+	public static class ViewEntrepriseUtilisateur extends ViewEntreprise {
+		
 	}
 	
 	public static class ViewEvenementStarch extends ViewCommon{
