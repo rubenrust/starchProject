@@ -13,26 +13,38 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Table
 public class EvenementStarch {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
+	@JsonView(Views.ViewCommon.class)
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private String titre;
+	@JsonView(Views.ViewCommon.class)
 	private Integer nbParticipantMax;
+	@JsonView(Views.ViewCommon.class)
 	private Integer prixStarch;
+	@JsonView(Views.ViewCommon.class)
 	private String description;
 	@OneToMany(mappedBy = "evenementStarch")
+	@JsonView(Views.ViewEvenementStarchDetail.class)
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewEvenementStarchDetail.class)
 	private TypeEvenement typeEvenement;
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewEvenementStarchDetail.class)
 	private NomEvenement nomEvenement;
 	@Embedded
+	@JsonView(Views.ViewCommon.class)
 	private Adresse adresse;
 	
 	

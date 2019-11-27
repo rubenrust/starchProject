@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.starchProject.model.Commentaire;
+import fr.starchProject.model.Views;
 import fr.starchProject.repository.ICommentaireRepository;
-import sopra.formation.model.Stagiaire;
-import sopra.formation.model.Views;
-import sopra.formation.repository.IPersonneRepository;
 
 @RestController
 @RequestMapping("/stagiaire")
@@ -44,7 +42,7 @@ public class CommentaireController {
 	@GetMapping("/{id}/detail")
 	@JsonView(Views.ViewCommentaireDetail.class)
 	public Commentaire findDetail(@PathVariable Long id) {
-		Commentaire commentaire = (Commentaire) commentaireRepo.findWithFiliere(id);
+		Commentaire commentaire = (Commentaire) commentaireRepo.findWithUtilisateur(id);
 
 		return commentaire;
 	}

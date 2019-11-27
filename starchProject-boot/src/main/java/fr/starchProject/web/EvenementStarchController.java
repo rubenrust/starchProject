@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.starchProject.model.EvenementStarch;
+import fr.starchProject.model.Views;
 import fr.starchProject.repository.IEvenementStarchRepository;
-import sopra.formation.model.Evaluation;
-import sopra.formation.model.Views;
-import sopra.formation.repository.IEvaluationRepository;
 
 @RestController
 @RequestMapping("/evenementStarch")
