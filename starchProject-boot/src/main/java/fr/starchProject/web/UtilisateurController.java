@@ -51,7 +51,7 @@ public class UtilisateurController {
 		return utilisateurRepo.save(utilisateur);
 	}
 	
-	@DeleteMapping("")
+	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		utilisateurRepo.deleteById(id);
 	}
