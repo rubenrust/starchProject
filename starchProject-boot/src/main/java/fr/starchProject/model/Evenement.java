@@ -50,11 +50,11 @@ public class Evenement {
 	@JsonView(Views.ViewCommon.class)
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
-	@JsonView(Views.ViewCommon.class)
-	@OneToMany(mappedBy = "evenement")
+	@OneToMany(mappedBy = "evenement", fetch = FetchType.EAGER)
+	@JsonView(Views.ViewEvenementDetail.class)
 	private List<Commentaire> commentaires = new ArrayList<Commentaire>();
 	@OneToMany(mappedBy = "evenement")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewEvenementDetail.class)
 	private List<Participation> participations = new ArrayList<Participation>();
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "evenementStarch_id")
@@ -64,13 +64,12 @@ public class Evenement {
 	@JoinColumn(name = "lieuxEvenement_id")
 	@JsonView(Views.ViewCommon.class)
 	private LieuxEvenement lieuxEvenement;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entreprise_id")
 	@JsonView(Views.ViewEvenementDetail.class)
 	private Entreprise entreprise;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "groupe_id")
-	@JsonView(Views.ViewEvenementDetail.class)
 	private Groupe groupe;
 
 	public EvenementStarch getEvenementStarch() {
