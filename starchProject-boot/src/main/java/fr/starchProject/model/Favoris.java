@@ -14,21 +14,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table
 public class Favoris {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
+	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewCommon.class)
 	private NomEvenement nomActivite;
 	@OneToMany(mappedBy = "favoris")
 	private List<LieuxEvenement> lieuxEvenement = new ArrayList<LieuxEvenement>();
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
+	
 	public Favoris() {
 		super();
 	}
