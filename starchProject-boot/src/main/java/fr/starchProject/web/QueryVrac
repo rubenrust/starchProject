@@ -8,7 +8,6 @@ findFavorisByUtilisateursId : select uf from utilisateur u join u.favoris uf whe
 
 formulaire pre-rempli info user : select u from utilisateur u where u.id = :id
 
-idem entreprise : select e from entreprise e where e.id = :id
 
 filtres calendar mettre des OU a la place des AND: 
 	select e
