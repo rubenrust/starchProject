@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,42 +18,59 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table
 public class Evenement {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private String titre;
+	@JsonView(Views.ViewCommon.class)
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	@JsonView(Views.ViewCommon.class)
 	private Integer nbParticipantMax;
+	@JsonView(Views.ViewCommon.class)
 	private Integer prix;
+	@JsonView(Views.ViewCommon.class)
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
+	@JsonView(Views.ViewCommon.class)
 	@Enumerated(EnumType.STRING)
 	private Recurrence recurrence;
+	@JsonView(Views.ViewCommon.class)
 	@Enumerated(EnumType.STRING)
 	private TypeEvenement typeEvenement;
+	@JsonView(Views.ViewCommon.class)
 	@Enumerated(EnumType.STRING)
 	private NomEvenement nomEvenement;
+	@JsonView(Views.ViewCommon.class)
 	@OneToMany(mappedBy = "evenement")
 	private List<Commentaire> commentaires = new ArrayList<Commentaire>();
 	@OneToMany(mappedBy = "evenement")
+	@JsonView(Views.ViewCommon.class)
 	private List<Participation> participations = new ArrayList<Participation>();
-	@ManyToOne
-	@JoinColumn(name="evenementStarch_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "evenementStarch_id")
+	@JsonView(Views.ViewEvenementDetail.class)
 	private EvenementStarch evenementStarch;
 	@ManyToOne
-	@JoinColumn(name="lieuxEvenement_id")
+	@JoinColumn(name = "lieuxEvenement_id")
+	@JsonView(Views.ViewCommon.class)
 	private LieuxEvenement lieuxEvenement;
-	@ManyToOne
-	@JoinColumn(name="entreprise_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "entreprise_id")
+	@JsonView(Views.ViewEvenementDetail.class)
 	private Entreprise entreprise;
-	@ManyToOne
-	@JoinColumn(name="groupe_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "groupe_id")
+	@JsonView(Views.ViewEvenementDetail.class)
 	private Groupe groupe;
 
 	public EvenementStarch getEvenementStarch() {
