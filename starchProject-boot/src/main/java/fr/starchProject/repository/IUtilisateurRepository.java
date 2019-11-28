@@ -10,10 +10,10 @@ import fr.starchProject.model.Utilisateur;
 
 public interface IUtilisateurRepository extends JpaRepository <Utilisateur,Long> {
 
-	@Query("select p.utilisateur from Participation p where p.evenement.id = :id and p.type = Interesse")
+	@Query("select p.utilisateur from Participation p where p.evenement.id = :id and p.type = 'Interesse'")
 	List<Utilisateur> findAllByEvenementAndInteresse(@Param("id") Long id);
 	
-	@Query("select p.utilisateur from Participation p where p.evenement.id = :id and p.type != Interesse")
+	@Query("select p.utilisateur from Participation p where p.evenement.id = :id and p.type != 'Interesse'")
 	List<Utilisateur> findAllByEvenementAndParticipant(@Param("id") Long id);
 	
 	@Query("select g.utilisateur from Gestion g where g.groupe.id = :id")

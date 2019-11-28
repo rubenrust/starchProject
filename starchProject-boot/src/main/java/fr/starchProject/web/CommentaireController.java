@@ -34,7 +34,7 @@ public class CommentaireController {
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewCommentaire.class)
+	@JsonView(Views.ViewCommentaireDetail.class)
 	public Commentaire find(@PathVariable Long id) {
 		Commentaire commentaire = (Commentaire) commentaireRepo.findById(id).get();
 
@@ -55,6 +55,7 @@ public class CommentaireController {
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Views.ViewCommentaire.class)
 	public void delete(@PathVariable Long id) {
 		commentaireRepo.deleteById(id);
 	}
