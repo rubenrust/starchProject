@@ -12,15 +12,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table
 public class Groupe {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Version
+	@JsonView(Views.ViewCommon.class)
 	private Integer version;
+	@JsonView(Views.ViewCommon.class)
 	private String codeGroupe;
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
 	@OneToMany(mappedBy = "groupe")
 	private List<Evenement> evenement = new ArrayList<Evenement>();

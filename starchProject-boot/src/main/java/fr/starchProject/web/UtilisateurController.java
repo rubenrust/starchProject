@@ -3,6 +3,7 @@ package fr.starchProject.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.starchProject.model.Evenement;
 import fr.starchProject.model.Favoris;
 import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
+import fr.starchProject.repository.IEvenementRepository;
 import fr.starchProject.repository.IFavorisRepository;
 import fr.starchProject.repository.IUtilisateurRepository;
 
@@ -29,6 +32,9 @@ public class UtilisateurController {
 	
 	@Autowired
 	IFavorisRepository favorisRepo;
+	
+	@Autowired
+	IEvenementRepository evenementRepo;
 	
 	@GetMapping("")
 	@JsonView(Views.ViewUtilisateur.class)
@@ -61,19 +67,7 @@ public class UtilisateurController {
 		utilisateurRepo.deleteById(id);
 	}
 	
-	@GetMapping("/{id}/interesse")
-	public List<Utilisateur> findAllByEvenementAndInteresse(@PathVariable Long id){
-		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndInteresse(id);
-		
-		return utilisateurs;
-	}
 	
-	@GetMapping("/{id}/participe")
-	public List<Utilisateur> findAllByEvenementAndParticipant(@PathVariable Long id){
-		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndParticipant(id);
-		
-		return utilisateurs;
-	}
 	
 	@GetMapping("/{id}/groupe")
 	public List<Utilisateur> findAllByGroupeId(@PathVariable Long id){
@@ -87,5 +81,12 @@ public class UtilisateurController {
 		Favoris favoris = favorisRepo.findByUtilisateurId(id);
 		
 		return favoris;
+	}
+	
+	@GetMapping("/{id}/evenements")
+	List<Evenement> findAllByUtilisateurId(@Param("id") Long id){
+		List<Evenement> evenements = evenementRepo.findAllByUtilisateurId(id);
+		
+		return evenements;
 	}
 }

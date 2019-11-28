@@ -16,9 +16,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.starchProject.model.Commentaire;
 import fr.starchProject.model.Evenement;
+import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.ICommentaireRepository;
 import fr.starchProject.repository.IEvenementRepository;
+import fr.starchProject.repository.IUtilisateurRepository;
 
 @RestController
 @RequestMapping("/evenement")
@@ -29,6 +31,9 @@ public class EvenementController {
 
 	@Autowired
 	private ICommentaireRepository commentaireRepo;
+	
+	@Autowired
+	private IUtilisateurRepository utilisateurRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewEvenement.class)
@@ -75,5 +80,21 @@ public class EvenementController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		evenementRepo.deleteById(id);
+	}
+	
+	@GetMapping("/{id}/interesse")
+	@JsonView(Views.ViewUtilisateur.class)
+	public List<Utilisateur> findAllByEvenementAndInteresse(@PathVariable Long id){
+		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndInteresse(id);
+		
+		return utilisateurs;
+	}
+	
+	@GetMapping("/{id}/participe")
+	@JsonView(Views.ViewUtilisateur.class)
+	public List<Utilisateur> findAllByEvenementAndParticipant(@PathVariable Long id){
+		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndParticipant(id);
+		
+		return utilisateurs;
 	}
 }
