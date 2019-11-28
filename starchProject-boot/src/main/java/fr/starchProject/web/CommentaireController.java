@@ -21,7 +21,7 @@ import fr.starchProject.repository.ICommentaireRepository;
 
 
 @RestController
-@RequestMapping("/stagiaire")
+@RequestMapping("/commentaire")
 public class CommentaireController {
 	@Autowired
 	private ICommentaireRepository commentaireRepo;
