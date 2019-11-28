@@ -16,9 +16,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.starchProject.model.Entreprise;
 import fr.starchProject.model.Evenement;
+import fr.starchProject.model.Groupe;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.IEntrepriseRepository;
 import fr.starchProject.repository.IEvenementRepository;
+import fr.starchProject.repository.IGroupeRepository;
 
 
 @RestController
@@ -29,6 +31,9 @@ public class EntrepriseController {
 	private IEntrepriseRepository entrepriseRepo;
 	@Autowired
 	private IEvenementRepository evenementRepo;
+	@Autowired
+	private IGroupeRepository groupeRepo;
+	
 	
 	@GetMapping("")
 	@JsonView(Views.ViewEntreprise.class)
@@ -54,9 +59,9 @@ public class EntrepriseController {
 
 	@GetMapping("/{id}/groupes")
 	@JsonView(Views.ViewEntrepriseGroupe.class)
-	public Entreprise findwithGroupe(@PathVariable Long id) {
-		Entreprise entreprise = entrepriseRepo.findWithGroupe(id);
-		return entreprise;
+	public List<Groupe> findGroupewithEntreprise(@PathVariable Long id) {
+		List<Groupe> groupes = groupeRepo.findGroupewithEntreprise(id);
+		return groupes;
 	}
 	
 //	@GetMapping("/{id}/detail3")
