@@ -1,16 +1,19 @@
 package fr.starchProject;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IEvenementStarchRepository;
+import fr.starchProject.model.Adresse;
+import fr.starchProject.model.EvenementStarch;
+import fr.starchProject.model.NomEvenement;
+import fr.starchProject.model.TypeEvenement;
+import fr.starchProject.repository.IEvenementStarchRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class EvenementStarchRepositorySpringTest {
 
 	@Autowired
@@ -38,20 +41,20 @@ public class EvenementStarchRepositorySpringTest {
 		
 		laserGame = evenementStarchRepo.save(laserGame);
 		
-		EvenementStarch laserGameFind = evenementStarchRepo.find(laserGame.getId());
+		EvenementStarch laserGameFind = evenementStarchRepo.findById(laserGame.getId()).get();
 		
-		Assert.assertEquals("laser game de fou", laserGameFind.getTitre());
-		Assert.assertEquals(TypeEvenement.Corporate, laserGameFind.getTypeEvenement());
+		assertEquals("laser game de fou", laserGameFind.getTitre());
+		assertEquals(TypeEvenement.Corporate, laserGameFind.getTypeEvenement());
 		
 		int middleNumber = evenementStarchRepo.findAll().size();
 		
-		Assert.assertEquals(1, middleNumber-startNumber);
+		assertEquals(1, middleNumber-startNumber);
 		
 		evenementStarchRepo.delete(laserGameFind);
 		
-		laserGameFind = evenementStarchRepo.find(laserGameFind.getId());
+		laserGameFind = evenementStarchRepo.findById(laserGameFind.getId()).get();
 		
-		Assert.assertNull(laserGameFind);
+		assertNull(laserGameFind);
 		
 	}
 }
