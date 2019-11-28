@@ -15,5 +15,8 @@ public interface IEvenementRepository extends JpaRepository<Evenement, Long> {
 	
 	@Query("select p.evenement from participation p where p.utilisateur.id = :id")
 	List<Evenement> findAllByUtilisateurId(@Param("id") Long id);
+	
+	@Query("select e from Evenement e join e.groupe eg where eg.id = :id")
+	List<Evenement> findAllByGroupeId(@Param("id") Long id);
 
 }

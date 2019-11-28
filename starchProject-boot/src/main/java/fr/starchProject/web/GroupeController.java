@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import fr.starchProject.model.Entreprise;
 import fr.starchProject.model.Evenement;
-import fr.starchProject.model.Gestion;
 import fr.starchProject.model.Groupe;
+import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.IEvenementRepository;
-import fr.starchProject.repository.IGestionRepository;
 import fr.starchProject.repository.IGroupeRepository;
+import fr.starchProject.repository.IUtilisateurRepository;
 
 @RestController
 @RequestMapping("/groupe")
@@ -32,7 +31,7 @@ public class GroupeController {
 	@Autowired
 	private IEvenementRepository evenementRepo;
 	@Autowired
-	private IGestionRepository gestionRepo;
+	private IUtilisateurRepository utilisateurRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewGroupe.class)
@@ -51,18 +50,11 @@ public class GroupeController {
 
 	@GetMapping("/{id}/evenements")
 	@JsonView(Views.ViewEvenementEntreprise.class)
-	public List<Evenement> findEvenements(@PathVariable Long id) {
-		List<Evenement> evenements = evenementRepo.findEvenementsByGroupe(id);
+	public List<Evenement> findEvenementsByGroupeId(@PathVariable Long id) {
+		List<Evenement> evenements = evenementRepo.findAllByGroupeId(id);
 		return evenements;
 	}
 
-
-	@GetMapping("/{id}/gestion")
-	@JsonView(Views.ViewGestionEntreprise.class)
-	public List<Gestion> findwithGestion(@PathVariable Long id) {
-		List<Gestion> gestion = gestionRepo.findGestionWithGroupe(id);
-		return gestion;
-	}
 
 	@PostMapping("")
 	public Groupe create(@RequestBody Groupe groupe) {
@@ -77,6 +69,14 @@ public class GroupeController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		groupeRepo.deleteById(id);
+	}
+	
+
+	@GetMapping("/{id}/groupe")
+	public List<Utilisateur> findUtilisateursByGroupeId(@PathVariable Long id){
+		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByGroupeId(id);
+		
+		return utilisateurs;
 	}
 
 }

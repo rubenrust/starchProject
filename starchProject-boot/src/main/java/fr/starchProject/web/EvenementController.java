@@ -51,7 +51,7 @@ public class EvenementController {
 
 	@GetMapping("/{id}/commentaires")
 	@JsonView(Views.ViewEvenementDetail.class)
-	public List<Commentaire> findCommentaires(@PathVariable Long id) {
+	public List<Commentaire> findCommentairesByEvenement(@PathVariable Long id) {
 		List<Commentaire> commentaires = commentaireRepo.findAllByEvenement(id);
 
 		return commentaires;
@@ -84,7 +84,7 @@ public class EvenementController {
 	
 	@GetMapping("/{id}/interesse")
 	@JsonView(Views.ViewUtilisateur.class)
-	public List<Utilisateur> findAllByEvenementAndInteresse(@PathVariable Long id){
+	public List<Utilisateur> findUtilisateursByEvenementAndInteresse(@PathVariable Long id){
 		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndInteresse(id);
 		
 		return utilisateurs;
@@ -92,7 +92,7 @@ public class EvenementController {
 	
 	@GetMapping("/{id}/participe")
 	@JsonView(Views.ViewUtilisateur.class)
-	public List<Utilisateur> findAllByEvenementAndParticipant(@PathVariable Long id){
+	public List<Utilisateur> findUtilisateursByEvenementAndParticipant(@PathVariable Long id){
 		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndParticipant(id);
 		
 		return utilisateurs;

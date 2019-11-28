@@ -17,10 +17,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.starchProject.model.Evenement;
 import fr.starchProject.model.Favoris;
+import fr.starchProject.model.Groupe;
 import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.IEvenementRepository;
 import fr.starchProject.repository.IFavorisRepository;
+import fr.starchProject.repository.IGroupeRepository;
 import fr.starchProject.repository.IUtilisateurRepository;
 
 @RestController
@@ -35,6 +37,9 @@ public class UtilisateurController {
 	
 	@Autowired
 	IEvenementRepository evenementRepo;
+	
+	@Autowired
+	IGroupeRepository groupeRepo;
 	
 	@GetMapping("")
 	@JsonView(Views.ViewUtilisateur.class)
@@ -69,12 +74,6 @@ public class UtilisateurController {
 	
 	
 	
-	@GetMapping("/{id}/groupe")
-	public List<Utilisateur> findAllByGroupeId(@PathVariable Long id){
-		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByGroupeId(id);
-		
-		return utilisateurs;
-	}
 	
 	@GetMapping("/{id}/favoris")
 	public Favoris findByUtilisateurId(@PathVariable Long id) {
@@ -88,5 +87,12 @@ public class UtilisateurController {
 		List<Evenement> evenements = evenementRepo.findAllByUtilisateurId(id);
 		
 		return evenements;
+	}
+	
+	@GetMapping("/{id}/groupes")
+	List<Groupe> findGroupesByUtilisateur(@Param("id") Long id){
+		List<Groupe> groupes = groupeRepo.findAllByUtilisateur(id);
+		
+		return groupes;
 	}
 }

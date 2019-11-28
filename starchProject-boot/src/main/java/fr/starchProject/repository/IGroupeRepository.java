@@ -10,7 +10,7 @@ import fr.starchProject.model.Groupe;
 
 public interface IGroupeRepository extends JpaRepository <Groupe,Long>{
 	
-	@Query("select g from Entreprise e left join fetch e.groupes eg where e.id = :id")
-	List<Groupe> findGroupewithEntreprise(@Param("id") Long id);
+	@Query("select g.groupe from Gestion g  where g.utilisateur.id = :id")
+	List<Groupe> findAllByUtilisateur(@Param("id") Long id);
 
 }
