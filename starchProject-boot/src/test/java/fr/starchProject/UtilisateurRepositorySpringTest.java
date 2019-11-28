@@ -1,23 +1,25 @@
 package fr.starchProject;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.Assert;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IEntreprisesRepository;
-import sopra.formation.repository.IUtilisateurRepository;
+import fr.starchProject.model.Adresse;
+import fr.starchProject.model.Entreprise;
+import fr.starchProject.model.Utilisateur;
+import fr.starchProject.repository.IEntrepriseRepository;
+import fr.starchProject.repository.IUtilisateurRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class UtilisateurRepositorySpringTest {
 
 	@Autowired
 	private IUtilisateurRepository utilisateurRepo;
 	@Autowired
-	private IEntreprisesRepository entrepriseRepo;
+	private IEntrepriseRepository entrepriseRepo;
 
 	@Test
 	public void testUtilisateur() {
@@ -32,23 +34,21 @@ public class UtilisateurRepositorySpringTest {
 		ruben.setTelephone("0632227403");
 
 		ruben = utilisateurRepo.save(ruben);
-		Utilisateur rubenFind = utilisateurRepo.find(ruben.getId());
+		Utilisateur rubenFind = utilisateurRepo.findById(ruben.getId()).get();
 
-		Assert.assertEquals((String) "rust.ruben@gmail.com", ruben.getEmail());
-		Assert.assertEquals((String) "rubenrust", ruben.getIdentifiant());
-		Assert.assertEquals((String) "rust", ruben.getNom());
-		Assert.assertEquals((String) "ruben", ruben.getPrenom());
-		Assert.assertEquals((String) "0632227403", ruben.getTelephone());
+		assertEquals((String) "rust.ruben@gmail.com", ruben.getEmail());
+		assertEquals((String) "rubenrust", ruben.getIdentifiant());
+		assertEquals((String) "rust", ruben.getNom());
+		assertEquals((String) "ruben", ruben.getPrenom());
+		assertEquals((String) "0632227403", ruben.getTelephone());
 
 		int middleNumber = utilisateurRepo.findAll().size();
-		
-		
 
 		utilisateurRepo.delete(ruben);
-		rubenFind = utilisateurRepo.find(ruben.getId());
-		Assert.assertNull(rubenFind);
+		rubenFind = utilisateurRepo.findById(ruben.getId()).get();
+		assertNull(rubenFind);
 	}
-	
+
 	@Test
 	public void testUtilisateurwithEntreprise() {
 		Entreprise sopra = new Entreprise();
@@ -56,7 +56,7 @@ public class UtilisateurRepositorySpringTest {
 		sopra.setCodeEntreprise("241547");
 		sopra.setSiret("4715564558855");
 		sopra.setTva("4552662555");
-		
+
 		Adresse adresseSopra = new Adresse();
 		adresseSopra.setRue("24 rue dure");
 		adresseSopra.setVille("Merignac");
@@ -64,7 +64,7 @@ public class UtilisateurRepositorySpringTest {
 
 		sopra.setAdresse(adresseSopra);
 		sopra = entrepriseRepo.save(sopra);
-		
+
 		Utilisateur ruben = new Utilisateur();
 		ruben.setEmail("rust.ruben@gmail.com");
 		ruben.setIdentifiant("rubenrust");
@@ -72,12 +72,12 @@ public class UtilisateurRepositorySpringTest {
 		ruben.setPrenom("ruben");
 		ruben.setTelephone("0632227403");
 		ruben.setEntreprise(sopra);
-		
+
 		ruben = utilisateurRepo.save(ruben);
-		
-		Utilisateur rubenFind = utilisateurRepo.find(ruben.getId());
-		
-		Assert.assertEquals("sopra steria", ruben.getEntreprise().getNom());
+
+		Utilisateur rubenFind = utilisateurRepo.findById(ruben.getId()).get();
+
+		assertEquals("sopra steria", ruben.getEntreprise().getNom());
 	}
 
 }

@@ -1,26 +1,23 @@
 package fr.starchProject;
 
-import java.text.ParseException;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IEntreprisesRepository;
-import sopra.formation.repository.IGroupeRepository;
-import sopra.formation.repository.IUtilisateurRepository;
+import fr.starchProject.model.Entreprise;
+import fr.starchProject.model.Groupe;
+import fr.starchProject.repository.IEntrepriseRepository;
+import fr.starchProject.repository.IGroupeRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class GroupeRepositorySpringTest {
 
 	@Autowired
 	private IGroupeRepository groupeRepo;
 	@Autowired
-	private IEntreprisesRepository entrepriseRepo;
+	private IEntrepriseRepository entrepriseRepo;
 
 	@Test
 	public void testGroupe() {
@@ -32,20 +29,20 @@ public class GroupeRepositorySpringTest {
 		groupeToto.setNom("Toto");
 
 		groupeToto = groupeRepo.save(groupeToto);
-		Groupe groupeTotoFind = groupeRepo.find(groupeToto.getId());
+		Groupe groupeTotoFind = groupeRepo.findById(groupeToto.getId()).get();
 
-		Assert.assertEquals((String) "254785", groupeToto.getCodeGroupe());
-		Assert.assertEquals((String) "Toto", groupeToto.getNom());
+		assertEquals((String) "254785", groupeToto.getCodeGroupe());
+		assertEquals((String) "Toto", groupeToto.getNom());
 
 		int middleNumber = groupeRepo.findAll().size();
-		
-		Assert.assertEquals(1,middleNumber - startNumber);
+
+		assertEquals(1, middleNumber - startNumber);
 
 		groupeRepo.delete(groupeToto);
 
-		groupeTotoFind = groupeRepo.find(groupeToto.getId());
+		groupeTotoFind = groupeRepo.findById(groupeToto.getId()).get();
 
-		Assert.assertNull(groupeTotoFind);
+		assertNull(groupeTotoFind);
 
 	}
 
@@ -68,9 +65,9 @@ public class GroupeRepositorySpringTest {
 
 		groupeToto = groupeRepo.save(groupeToto);
 
-		Groupe groupeTotoFind = groupeRepo.find(groupeToto.getId());
+		Groupe groupeTotoFind = groupeRepo.findById(groupeToto.getId()).get();
 
-		Assert.assertEquals("4715564558855", groupeToto.getEntreprise().getSiret());
+		assertEquals("4715564558855", groupeToto.getEntreprise().getSiret());
 
 	}
 
