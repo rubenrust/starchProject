@@ -12,5 +12,6 @@ public interface IEvenementRepository extends JpaRepository<Evenement, Long> {
 
 	@Query("select e from Evenement e join e.entreprise en where en.id = :id")
 	List<Evenement> findAllByEntreprise(@Param("id") Long id);
-
+	
+	
 }

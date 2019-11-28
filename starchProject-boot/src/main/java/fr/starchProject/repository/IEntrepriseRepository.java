@@ -22,9 +22,6 @@ public interface IEntrepriseRepository extends JpaRepository<Entreprise, Long>{
 	Entreprise findByid(@Param("id") Long id);
 	
 	
-//	@Query("select ")
-//	Entreprise findAllbyEntreprise(@Param("id") Long id);
-
 	@Query("select distinct f from Filiere f left join fetch f.referent r where f.id = :id")
 	Entreprise findWithGroupe(@Param("id") Long id);  //a mettre en commentaire après
 	
