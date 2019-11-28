@@ -62,7 +62,7 @@ public class Evenement {
 	private EvenementStarch evenementStarch;
 	@ManyToOne
 	@JoinColumn(name = "lieuxEvenement_id")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewEvenementDetail.class)
 	private LieuxEvenement lieuxEvenement;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entreprise_id")
