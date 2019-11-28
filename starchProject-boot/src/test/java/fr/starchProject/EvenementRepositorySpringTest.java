@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.starchProject.model.Adresse;
 import fr.starchProject.model.Entreprise;
@@ -24,7 +25,7 @@ import fr.starchProject.repository.IEvenementStarchRepository;
 import fr.starchProject.repository.IGroupeRepository;
 import fr.starchProject.repository.ILieuxEvenementRepository;
 
-
+@SpringBootTest
 public class EvenementRepositorySpringTest {
 
 	@Autowired
