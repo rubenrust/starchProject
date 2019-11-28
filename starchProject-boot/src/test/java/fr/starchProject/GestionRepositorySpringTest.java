@@ -1,18 +1,21 @@
 package fr.starchProject;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IGestionRepository;
-import sopra.formation.repository.IGroupeRepository;
-import sopra.formation.repository.IUtilisateurRepository;
+import fr.starchProject.model.Gestion;
+import fr.starchProject.model.Groupe;
+import fr.starchProject.model.TypeGestion;
+import fr.starchProject.model.Utilisateur;
+import fr.starchProject.repository.IGestionRepository;
+import fr.starchProject.repository.IGroupeRepository;
+import fr.starchProject.repository.IUtilisateurRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class GestionRepositorySpringTest {
 
 	@Autowired
@@ -31,17 +34,17 @@ public class GestionRepositorySpringTest {
 		gestionRuben.setGestion(TypeGestion.Membre);
 
 		gestionRuben = gestionRepo.save(gestionRuben);
-		Gestion gestionRubenFind = gestionRepo.find(gestionRuben.getId());
+		Gestion gestionRubenFind = gestionRepo.findById(gestionRuben.getId()).get();
 
-		Assert.assertEquals(TypeGestion.Membre, gestionRuben.getGestion());
+		assertEquals(TypeGestion.Membre, gestionRuben.getGestion());
 
 		int middleNumber = gestionRepo.findAll().size();
 
-		Assert.assertEquals(1, middleNumber - startNumber);
+		assertEquals(1, middleNumber - startNumber);
 
 		gestionRepo.delete(gestionRuben);
-		gestionRubenFind = gestionRepo.find(gestionRuben.getId());
-		Assert.assertNull(gestionRubenFind);
+		gestionRubenFind = gestionRepo.findById(gestionRuben.getId()).get();
+		assertNull(gestionRubenFind);
 
 	}
 
@@ -61,9 +64,9 @@ public class GestionRepositorySpringTest {
 
 		gestionRuben = gestionRepo.save(gestionRuben);
 
-		Gestion gestionFind = gestionRepo.find(gestionRuben.getId());
+		Gestion gestionFind = gestionRepo.findById(gestionRuben.getId()).get();
 
-		Assert.assertEquals("254785", gestionFind.getGroupe().getCodeGroupe());
+		assertEquals("254785", gestionFind.getGroupe().getCodeGroupe());
 
 	}
 
@@ -86,9 +89,9 @@ public class GestionRepositorySpringTest {
 
 		gestionRuben = gestionRepo.save(gestionRuben);
 
-		Gestion gestionFind = gestionRepo.find(gestionRuben.getId());
+		Gestion gestionFind = gestionRepo.findById(gestionRuben.getId()).get();
 
-		Assert.assertEquals("rust", gestionFind.getUtilisateur().getNom());
+		assertEquals("rust", gestionFind.getUtilisateur().getNom());
 
 	}
 

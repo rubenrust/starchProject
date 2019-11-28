@@ -1,18 +1,20 @@
 package fr.starchProject;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IFavorisRepository;
-import sopra.formation.repository.ILieuxEvenementRepository;
-import sopra.formation.repository.IUtilisateurRepository;
+import fr.starchProject.model.Favoris;
+import fr.starchProject.model.NomEvenement;
+import fr.starchProject.model.Utilisateur;
+import fr.starchProject.repository.IFavorisRepository;
+import fr.starchProject.repository.ILieuxEvenementRepository;
+import fr.starchProject.repository.IUtilisateurRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class FavorisRepositorySpringTest {
 
 	@Autowired
@@ -33,15 +35,15 @@ public class FavorisRepositorySpringTest {
 		favorisRuben.setNomActivite(NomEvenement.Escape_game);
 
 		favorisRuben = favorisRepo.save(favorisRuben);
-		Favoris favorisRubenFind = favorisRepo.find(favorisRuben.getId());
+		Favoris favorisRubenFind = favorisRepo.findById(favorisRuben.getId()).get();
 
-		Assert.assertEquals(NomEvenement.Escape_game, favorisRuben.getNomActivite());
+		assertEquals(NomEvenement.Escape_game, favorisRuben.getNomActivite());
 
 		int middleNumber = favorisRepo.findAll().size();
 
 		favorisRepo.delete(favorisRuben);
-		favorisRubenFind = favorisRepo.find(favorisRuben.getId());
-		Assert.assertNull(favorisRubenFind);
+		favorisRubenFind = favorisRepo.findById(favorisRuben.getId()).get();
+		assertNull(favorisRubenFind);
 
 	}
 	
@@ -61,8 +63,8 @@ public class FavorisRepositorySpringTest {
 	favorisArnaud.setUtilisateur(Arnaud);
 	
 	favorisArnaud = favorisRepo.save(favorisArnaud);
-	Favoris FavorisArnaudFind = favorisRepo.find(favorisArnaud.getId());
-	Assert.assertEquals("MICHEL", FavorisArnaudFind.getUtilisateur().getNom());
+	Favoris FavorisArnaudFind = favorisRepo.findById(favorisArnaud.getId()).get();
+	assertEquals("MICHEL", FavorisArnaudFind.getUtilisateur().getNom());
 	}
 	
 	
@@ -84,7 +86,7 @@ public class FavorisRepositorySpringTest {
 //
 //	
 //	favorisArnaud = favorisRepo.save(favorisArnaud);
-//	Favoris FavorisArnaudFind = favorisRepo.find(favorisArnaud.getId());
+//	Favoris FavorisArnaudFind = favorisRepo.findById(favorisArnaud.getId()).get();
 //	Assert.assertEquals("", FavorisArnaudFind.getLieuxEvenement().get(0));
 //	Assert.assertEquals("", FavorisArnaudFind.getLieuxEvenement().get(1));
 //	

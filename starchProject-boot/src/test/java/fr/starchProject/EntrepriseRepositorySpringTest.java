@@ -37,7 +37,7 @@ public class EntrepriseRepositorySpringTest {
 		
 		sopra = entrepriseRepo.save(sopra);
 		
-		Entreprise sopraFind = entrepriseRepo.findByid(sopra.getId());
+		Entreprise sopraFind = entrepriseRepo.findById(sopra.getId()).get();
 		
 		assertEquals("sopra steria", sopraFind.getNom());
 		assertEquals("241547", sopraFind.getCodeEntreprise());
@@ -50,7 +50,7 @@ public class EntrepriseRepositorySpringTest {
 		
 		entrepriseRepo.delete(sopraFind);
 		
-		sopraFind = entrepriseRepo.findByid(sopraFind.getId());
+		sopraFind = entrepriseRepo.findById(sopraFind.getId()).get();
 		
 		assertNull(sopraFind);
 		
