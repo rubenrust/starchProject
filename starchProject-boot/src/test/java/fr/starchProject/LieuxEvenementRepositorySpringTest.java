@@ -1,17 +1,20 @@
 package fr.starchProject;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IFavorisRepository;
-import sopra.formation.repository.ILieuxEvenementRepository;
+import fr.starchProject.model.Adresse;
+import fr.starchProject.model.Favoris;
+import fr.starchProject.model.LieuxEvenement;
+import fr.starchProject.model.NomEvenement;
+import fr.starchProject.repository.IFavorisRepository;
+import fr.starchProject.repository.ILieuxEvenementRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class LieuxEvenementRepositorySpringTest {
 
 	@Autowired
@@ -43,32 +46,32 @@ public class LieuxEvenementRepositorySpringTest {
 		footSalle.setDescription("foot en salle à merignac");
 
 		escapeGame = lieuxEvenementRepo.save(escapeGame);
-		LieuxEvenement escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
+		LieuxEvenement escapeGameFind = lieuxEvenementRepo.findById(escapeGame.getId()).get();
 
 		footSalle = lieuxEvenementRepo.save(footSalle);
-		LieuxEvenement footSalleFind = lieuxEvenementRepo.find(footSalle.getId());
+		LieuxEvenement footSalleFind = lieuxEvenementRepo.findById(footSalle.getId()).get();
 
-		Assert.assertEquals((String) "escape game à bordeaux", escapeGame.getDescription());
-		Assert.assertEquals((String) "28 rue dupuis", adresseEscapeGame.getRue());
-		Assert.assertEquals((String) "Bordeaux", adresseEscapeGame.getVille());
-		Assert.assertEquals((String) "33000", adresseEscapeGame.getCodePostal());
+		assertEquals((String) "escape game à bordeaux", escapeGame.getDescription());
+		assertEquals((String) "28 rue dupuis", adresseEscapeGame.getRue());
+		assertEquals((String) "Bordeaux", adresseEscapeGame.getVille());
+		assertEquals((String) "33000", adresseEscapeGame.getCodePostal());
 
-		Assert.assertEquals((String) "foot en salle à merignac", footSalle.getDescription());
-		Assert.assertEquals((String) "26 rue dejean", adresseFootSalle.getRue());
-		Assert.assertEquals((String) "Merignac", adresseFootSalle.getVille());
-		Assert.assertEquals((String) "33400", adresseFootSalle.getCodePostal());
+		assertEquals((String) "foot en salle à merignac", footSalle.getDescription());
+		assertEquals((String) "26 rue dejean", adresseFootSalle.getRue());
+		assertEquals((String) "Merignac", adresseFootSalle.getVille());
+		assertEquals((String) "33400", adresseFootSalle.getCodePostal());
 
 		int middleNumber = lieuxEvenementRepo.findAll().size();
 
-		Assert.assertEquals(2, middleNumber - startNumber);
+		assertEquals(2, middleNumber - startNumber);
 
 		lieuxEvenementRepo.delete(escapeGame);
-		escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
-		Assert.assertNull(escapeGameFind);
+		escapeGameFind = lieuxEvenementRepo.findById(escapeGame.getId()).get();
+		assertNull(escapeGameFind);
 
 		lieuxEvenementRepo.delete(footSalle);
-		footSalleFind = lieuxEvenementRepo.find(footSalle.getId());
-		Assert.assertNull(footSalleFind);
+		footSalleFind = lieuxEvenementRepo.findById(footSalle.getId()).get();
+		assertNull(footSalleFind);
 
 	}
 
@@ -93,9 +96,9 @@ public class LieuxEvenementRepositorySpringTest {
 
 		escapeGame = lieuxEvenementRepo.save(escapeGame);
 
-		LieuxEvenement escapeGameFind = lieuxEvenementRepo.find(escapeGame.getId());
+		LieuxEvenement escapeGameFind = lieuxEvenementRepo.findById(escapeGame.getId()).get();
 
-		Assert.assertEquals(NomEvenement.Escape_game, escapeGameFind.getFavoris().getNomActivite());
+		assertEquals(NomEvenement.Escape_game, escapeGameFind.getFavoris().getNomActivite());
 
 	}
 

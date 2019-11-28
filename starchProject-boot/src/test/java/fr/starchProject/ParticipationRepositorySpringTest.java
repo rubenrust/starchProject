@@ -3,19 +3,26 @@ package fr.starchProject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IEvenementRepository;
-import sopra.formation.repository.IParticipationRepository;
-import sopra.formation.repository.IUtilisateurRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+import fr.starchProject.model.Evenement;
+import fr.starchProject.model.NomEvenement;
+import fr.starchProject.model.Participation;
+import fr.starchProject.model.TypeParticipation;
+import fr.starchProject.model.Utilisateur;
+import fr.starchProject.repository.IEvenementRepository;
+import fr.starchProject.repository.IParticipationRepository;
+import fr.starchProject.repository.IUtilisateurRepository;
+
+
+
+@SpringBootTest
 public class ParticipationRepositorySpringTest {
 
 	@Autowired
@@ -38,17 +45,17 @@ public class ParticipationRepositorySpringTest {
 		
 		
 		participationRuben = participationRepo.save(participationRuben);
-		Participation participationRubenFind = participationRepo.find(participationRuben.getId());
+		Participation participationRubenFind = participationRepo.findById(participationRuben.getId()).get();
 		
-		Assert.assertEquals(TypeParticipation.Participant, participationRuben.getType());
+		assertEquals(TypeParticipation.Participant, participationRuben.getType());
 
 		int middleNumber = participationRepo.findAll().size();
 		
-		Assert.assertEquals(1,middleNumber - startNumber);
+		assertEquals(1,middleNumber - startNumber);
 
 		participationRepo.delete(participationRuben);
-		participationRubenFind = participationRepo.find(participationRuben.getId());
-		Assert.assertNull(participationRubenFind);
+		participationRubenFind = participationRepo.findById(participationRuben.getId()).get();
+		assertNull(participationRubenFind);
 		
 		
 	}
@@ -72,9 +79,9 @@ public class ParticipationRepositorySpringTest {
 		
 		participationRuben = participationRepo.save(participationRuben);
 		
-		Participation participationRubenFind = participationRepo.find(participationRuben.getId());
+		Participation participationRubenFind = participationRepo.findById(participationRuben.getId()).get();
 		
-		Assert.assertEquals("rubenrust", participationRubenFind.getUtilisateur().getIdentifiant());
+		assertEquals("rubenrust", participationRubenFind.getUtilisateur().getIdentifiant());
 	}
 	
 	@Test
@@ -97,9 +104,9 @@ public class ParticipationRepositorySpringTest {
 		
 		participationRuben = participationRepo.save(participationRuben);
 		
-		Participation participationRubenFind = participationRepo.find(participationRuben.getId());
+		Participation participationRubenFind = participationRepo.findById(participationRuben.getId()).get();
 		
-		Assert.assertEquals("escape game", participationRubenFind.getEvenement().getTitre());
+		assertEquals("escape game", participationRubenFind.getEvenement().getTitre());
 	}
 
 }

@@ -1,23 +1,30 @@
 package fr.starchProject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sopra.formation.repository.IEntreprisesRepository;
-import sopra.formation.repository.IEvenementRepository;
-import sopra.formation.repository.IEvenementStarchRepository;
-import sopra.formation.repository.IGroupeRepository;
-import sopra.formation.repository.ILieuxEvenementRepository;
+import fr.starchProject.model.Adresse;
+import fr.starchProject.model.Entreprise;
+import fr.starchProject.model.Evenement;
+import fr.starchProject.model.EvenementStarch;
+import fr.starchProject.model.Groupe;
+import fr.starchProject.model.LieuxEvenement;
+import fr.starchProject.model.NomEvenement;
+import fr.starchProject.model.Recurrence;
+import fr.starchProject.model.TypeEvenement;
+import fr.starchProject.repository.IEntrepriseRepository;
+import fr.starchProject.repository.IEvenementRepository;
+import fr.starchProject.repository.IEvenementStarchRepository;
+import fr.starchProject.repository.IGroupeRepository;
+import fr.starchProject.repository.ILieuxEvenementRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+
 public class EvenementRepositorySpringTest {
 
 	@Autowired
@@ -30,7 +37,7 @@ public class EvenementRepositorySpringTest {
 	private ILieuxEvenementRepository lieuxEvenementRepo;
 	
 	@Autowired
-	private IEntreprisesRepository entrepriseRepo;
+	private IEntrepriseRepository entrepriseRepo;
 	
 	@Autowired
 	private IGroupeRepository groupeRepo;
@@ -53,21 +60,21 @@ public class EvenementRepositorySpringTest {
 		
 		evenementEscape = evenementRepo.save(evenementEscape);
 		
-		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		Evenement evenementEscapeFind = evenementRepo.findById(evenementEscape.getId()).get();
 		
-		Assert.assertEquals((Integer) 25, evenementEscapeFind.getNbParticipantMax());
-		Assert.assertEquals("escape game", evenementEscapeFind.getTitre());
-		Assert.assertEquals((Integer) 15, evenementEscapeFind.getPrix());
+		assertEquals((Integer) 25, evenementEscapeFind.getNbParticipantMax());
+		assertEquals("escape game", evenementEscapeFind.getTitre());
+		assertEquals((Integer) 15, evenementEscapeFind.getPrix());
 		
 		int middleNumber = evenementRepo.findAll().size();
 		
-		Assert.assertEquals(1, middleNumber-startNumber);
+		assertEquals(1, middleNumber-startNumber);
 		
 		evenementRepo.delete(evenementEscapeFind);
 		
-		evenementEscapeFind = evenementRepo.find(evenementEscapeFind.getId());
+		evenementEscapeFind = evenementRepo.findById(evenementEscapeFind.getId()).get();
 		
-		Assert.assertNull(evenementEscapeFind);
+		assertNull(evenementEscapeFind);
 	}
 	
 	@Test
@@ -105,9 +112,9 @@ public class EvenementRepositorySpringTest {
 		
 		evenementEscape = evenementRepo.save(evenementEscape);
 		
-		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		Evenement evenementEscapeFind = evenementRepo.findById(evenementEscape.getId()).get();
 		
-		Assert.assertEquals("laser game de fou", evenementEscapeFind.getEvenementStarch().getTitre());
+		assertEquals("laser game de fou", evenementEscapeFind.getEvenementStarch().getTitre());
 	}
 	
 	@Test
@@ -139,9 +146,9 @@ public class EvenementRepositorySpringTest {
 		
 		evenementEscape = evenementRepo.save(evenementEscape);
 		
-		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		Evenement evenementEscapeFind = evenementRepo.findById(evenementEscape.getId()).get();
 		
-		Assert.assertEquals("foot en salle à bordeaux", evenementEscapeFind.getLieuxEvenement().getDescription());
+		assertEquals("foot en salle à bordeaux", evenementEscapeFind.getLieuxEvenement().getDescription());
 	}
 	
 	@Test
@@ -177,9 +184,9 @@ public class EvenementRepositorySpringTest {
 		
 		evenementEscape = evenementRepo.save(evenementEscape);
 		
-		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		Evenement evenementEscapeFind = evenementRepo.findById(evenementEscape.getId()).get();
 		
-		Assert.assertEquals("sopra steria", evenementEscapeFind.getEntreprise().getNom());
+		assertEquals("sopra steria", evenementEscapeFind.getEntreprise().getNom());
 	}
 	
 	@Test
@@ -202,8 +209,8 @@ public class EvenementRepositorySpringTest {
 		
 		evenementEscape = evenementRepo.save(evenementEscape);
 		
-		Evenement evenementEscapeFind = evenementRepo.find(evenementEscape.getId());
+		Evenement evenementEscapeFind = evenementRepo.findById(evenementEscape.getId()).get();
 		
-		Assert.assertEquals("Toto", evenementEscapeFind.getGroupe().getNom());
+		assertEquals("Toto", evenementEscapeFind.getGroupe().getNom());
 	}
 }

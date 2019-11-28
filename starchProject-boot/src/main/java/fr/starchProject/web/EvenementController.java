@@ -57,14 +57,6 @@ public class EvenementController {
 		return commentaires;
 	}
 
-	@GetMapping("/{id}/entreprise")
-	@JsonView(Views.ViewEvenementDetail.class)
-	public List<Evenement> findEntreprises(@PathVariable Long id) {
-		List<Evenement> evenements = evenementRepo.findAllByEntreprise(id);
-
-		return evenements;
-	}
-
 	@PostMapping("")
 	@JsonView(Views.ViewEvenement.class)
 	public Evenement create(@RequestBody Evenement evenement) {
