@@ -1,6 +1,7 @@
 package fr.starchProject.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,7 @@ private Long id;
 private Integer version;
 @JsonView(Views.ViewCommon.class)
 private String commentaire;
-@ManyToOne
+@ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name="utilisateur_id")
 private Utilisateur utilisateur;
 @ManyToOne

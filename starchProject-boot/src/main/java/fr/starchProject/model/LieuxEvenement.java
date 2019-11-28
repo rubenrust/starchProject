@@ -57,6 +57,14 @@ public class LieuxEvenement {
 		super();
 	}
 
+	public LieuxEvenement(Long id, int version, String nomLieu, String description) {
+		super();
+		this.id = id;
+		this.version = version;
+		this.nomLieu = nomLieu;
+		this.description = description;
+	}
+
 	public Long getId() {
 		return id;
 	}

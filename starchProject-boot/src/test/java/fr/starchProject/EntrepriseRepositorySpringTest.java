@@ -1,20 +1,21 @@
 package fr.starchProject;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import sopra.formation.repository.IEntreprisesRepository;
+import fr.starchProject.model.Adresse;
+import fr.starchProject.model.Entreprise;
+import fr.starchProject.repository.IEntrepriseRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootTest
 public class EntrepriseRepositorySpringTest {
 
 	@Autowired
-	private IEntreprisesRepository entrepriseRepo;
+	private IEntrepriseRepository entrepriseRepo;
 	
 	@Test
 	public void testEntreprise() {
@@ -36,22 +37,22 @@ public class EntrepriseRepositorySpringTest {
 		
 		sopra = entrepriseRepo.save(sopra);
 		
-		Entreprise sopraFind = entrepriseRepo.find(sopra.getId());
+		Entreprise sopraFind = entrepriseRepo.findById(sopra.getId()).get();
 		
-		Assert.assertEquals("sopra steria", sopraFind.getNom());
-		Assert.assertEquals("241547", sopraFind.getCodeEntreprise());
-		Assert.assertEquals("4715564558855", sopraFind.getSiret());
-		Assert.assertEquals("4552662555", sopraFind.getTva());
+		assertEquals("sopra steria", sopraFind.getNom());
+		assertEquals("241547", sopraFind.getCodeEntreprise());
+		assertEquals("4715564558855", sopraFind.getSiret());
+		assertEquals("4552662555", sopraFind.getTva());
 		
 		int middleNumber = entrepriseRepo.findAll().size();
 		
-		Assert.assertEquals(1, middleNumber-startNumber);
+		assertEquals(1, middleNumber-startNumber);
 		
 		entrepriseRepo.delete(sopraFind);
 		
-		sopraFind = entrepriseRepo.find(sopraFind.getId());
+		sopraFind = entrepriseRepo.findById(sopraFind.getId()).get();
 		
-		Assert.assertNull(sopraFind);
+		assertNull(sopraFind);
 		
 	}
 }

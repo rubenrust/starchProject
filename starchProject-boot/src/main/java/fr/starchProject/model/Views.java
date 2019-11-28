@@ -2,6 +2,8 @@ package fr.starchProject.model;
 
 public class Views {
 
+	
+	//Rajouter les vues
 	public static class ViewCommon {
 		
 	}
@@ -19,6 +21,18 @@ public class Views {
 		
 	}
 	
+	public static class ViewGroupe extends ViewCommon {
+		
+	}
+	
+	public static class ViewGestionEntreprise extends ViewCommon {
+		
+	}
+	
+	public static class ViewEvenementEntreprise extends  ViewGroupe {
+		
+	}
+	
 	public static class ViewEvenementStarch extends ViewCommon{
 	}
 	public static class ViewEvenementStarchDetail extends ViewEvenementStarch{
@@ -31,6 +45,7 @@ public class Views {
 	public static class ViewFavoris extends ViewCommon {
 	}
 	
+
 	public static class ViewUtilisateur extends ViewCommon {
 	}
 
