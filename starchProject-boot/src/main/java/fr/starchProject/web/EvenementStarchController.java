@@ -42,16 +42,19 @@ public class EvenementStarchController {
 	
 
 	@PostMapping("")
+	@JsonView(Views.ViewEvenementStarch.class)
 	public EvenementStarch create(@RequestBody EvenementStarch evenementStarch) {
 		return evenementStarchRepo.save(evenementStarch);
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewEvenementStarch.class)
 	public EvenementStarch update(@RequestBody EvenementStarch evenementStarch, @PathVariable Long id) {
 		return evenementStarchRepo.save(evenementStarch);
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Views.ViewEvenementStarch.class)
 	public void delete(@PathVariable Long id) {
 		evenementStarchRepo.deleteById(id);
 	}

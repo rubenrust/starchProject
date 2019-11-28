@@ -25,9 +25,11 @@ private Integer version;
 private String commentaire;
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name="utilisateur_id")
+@JsonView(Views.ViewCommentaireDetail.class)
 private Utilisateur utilisateur;
 @ManyToOne
 @JoinColumn(name="evenement_id")
+@JsonView(Views.ViewCommentaireDetail.class)
 private Evenement evenement;
 
 public Evenement getEvenement() {
