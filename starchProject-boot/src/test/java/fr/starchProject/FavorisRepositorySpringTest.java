@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.starchProject.model.Favoris;
 import fr.starchProject.model.NomEvenement;
+import fr.starchProject.model.TypeFavoris;
 import fr.starchProject.model.Utilisateur;
 import fr.starchProject.repository.IFavorisRepository;
 import fr.starchProject.repository.ILieuxEvenementRepository;
@@ -33,6 +34,7 @@ public class FavorisRepositorySpringTest {
 
 		Favoris favorisRuben = new Favoris();
 		favorisRuben.setNomActivite(NomEvenement.Escape_game);
+		favorisRuben.setTypeFavoris(TypeFavoris.Activite);
 
 		favorisRuben = favorisRepo.save(favorisRuben);
 		Favoris favorisRubenFind = favorisRepo.findById(favorisRuben.getId()).get();
@@ -60,6 +62,7 @@ public class FavorisRepositorySpringTest {
 	
 	Favoris favorisArnaud = new Favoris();
 	favorisArnaud.setNomActivite(NomEvenement.Escape_game);
+	favorisArnaud.setTypeFavoris(TypeFavoris.Activite);
 	favorisArnaud.setUtilisateur(Arnaud);
 	
 	favorisArnaud = favorisRepo.save(favorisArnaud);

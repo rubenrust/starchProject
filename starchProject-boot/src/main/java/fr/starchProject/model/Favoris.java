@@ -28,15 +28,25 @@ public class Favoris {
 	private NomEvenement nomActivite;
 	@OneToOne
 	@JoinColumn(name ="lieuxEvenement_id")
+	@JsonView(Views.ViewCommon.class)
 	private LieuxEvenement lieuxEvenement;
 	@ManyToOne
 	@JoinColumn(name="utilisateur_id")
+	@JsonView(Views.ViewCommon.class)
 	private Utilisateur utilisateur;
 	@JsonView(Views.ViewCommon.class)
 	private TypeFavoris typeFavoris;
 	
 	public Favoris() {
 		super();
+	}
+
+	public TypeFavoris getTypeFavoris() {
+		return typeFavoris;
+	}
+
+	public void setTypeFavoris(TypeFavoris typeFavoris) {
+		this.typeFavoris = typeFavoris;
 	}
 
 	public Long getId() {

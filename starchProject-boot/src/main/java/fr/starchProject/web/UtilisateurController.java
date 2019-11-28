@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import fr.starchProject.model.Evenement;
 import fr.starchProject.model.Favoris;
 import fr.starchProject.model.Groupe;
+import fr.starchProject.model.Participation;
 import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.IEvenementRepository;
@@ -76,6 +77,7 @@ public class UtilisateurController {
 	
 	
 	@GetMapping("/{id}/favoris")
+	@JsonView(Views.ViewFavoris.class)
 	public Favoris findByUtilisateurId(@PathVariable Long id) {
 		Favoris favoris = favorisRepo.findByUtilisateurId(id);
 		
@@ -83,13 +85,15 @@ public class UtilisateurController {
 	}
 	
 	@GetMapping("/{id}/evenements")
-	List<Evenement> findAllByUtilisateurId(@Param("id") Long id){
-		List<Evenement> evenements = evenementRepo.findAllByUtilisateurId(id);
+	@JsonView(Views.ViewEvenementDetail.class)
+	List<Participation> findEvenementsByUtilisateurId(@Param("id") Long id){
+		List<Participation> evenements = evenementRepo.findAllByUtilisateurId(id);
 		
 		return evenements;
 	}
 	
 	@GetMapping("/{id}/groupes")
+	@JsonView(Views.ViewGroupe.class)
 	List<Groupe> findGroupesByUtilisateur(@Param("id") Long id){
 		List<Groupe> groupes = groupeRepo.findAllByUtilisateur(id);
 		
