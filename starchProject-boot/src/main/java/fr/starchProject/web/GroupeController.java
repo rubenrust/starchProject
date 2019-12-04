@@ -48,12 +48,7 @@ public class GroupeController {
 		return groupe;
 	}
 
-	@GetMapping("/{id}/evenements")
-	@JsonView(Views.ViewEvenementEntreprise.class)
-	public List<Evenement> findEvenementsByGroupeId(@PathVariable Long id) {
-		List<Evenement> evenements = evenementRepo.findAllByGroupeId(id);
-		return evenements;
-	}
+	
 
 
 	@PostMapping("")
