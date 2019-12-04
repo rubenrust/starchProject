@@ -60,4 +60,7 @@ public class Views {
 
 	public static class ViewLieuxEvenementDetail extends ViewEvenement {
 	}
+	
+	public static class ViewParticipation extends ViewCommon {
+	}
 }

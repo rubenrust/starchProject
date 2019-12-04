@@ -85,16 +85,16 @@ public class UtilisateurController {
 	}
 	
 	@GetMapping("/{id}/evenements")
-	@JsonView(Views.ViewEvenementDetail.class)
-	List<Participation> findEvenementsByUtilisateurId(@Param("id") Long id){
-		List<Participation> evenements = evenementRepo.findAllByUtilisateurId(id);
+	@JsonView(Views.ViewEvenement.class)
+	List<Evenement> findEvenementsByUtilisateurId(@PathVariable("id") Long id){
+		List<Evenement> evenements = evenementRepo.findAllByUtilisateurId(id);
 		
 		return evenements;
 	}
 	
 	@GetMapping("/{id}/groupes")
 	@JsonView(Views.ViewGroupe.class)
-	List<Groupe> findGroupesByUtilisateur(@Param("id") Long id){
+	List<Groupe> findGroupesByUtilisateur(@PathVariable("id") Long id){
 		List<Groupe> groupes = groupeRepo.findAllByUtilisateur(id);
 		
 		return groupes;
