@@ -33,6 +33,14 @@ public class Views {
 		
 	}
 	
+	public static class ViewEvenementGroupe  extends  ViewGroupe {
+		
+	}
+	
+	public static class ViewtUtilisateurGroupe extends  ViewGroupe {
+		
+	}
+	
 	public static class ViewEvenementStarch extends ViewCommon{
 	}
 	public static class ViewEvenementStarchDetail extends ViewEvenementStarch{

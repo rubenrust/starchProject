@@ -29,10 +29,12 @@ public class Groupe {
 	@JsonView(Views.ViewCommon.class)
 	private String nom;
 	@OneToMany(mappedBy = "groupe")
+	@JsonView(Views.ViewEvenementGroupe.class)
 	private List<Evenement> evenement = new ArrayList<Evenement>();
 	@ManyToOne
 	@JoinColumn(name="entreprise_id")
 	private Entreprise entreprise;
+	@JsonView(Views.ViewtUtilisateurGroupe.class)
 	@OneToMany (mappedBy="groupe")
 	private List<Gestion> utilisateurs= new ArrayList<Gestion>();
 	

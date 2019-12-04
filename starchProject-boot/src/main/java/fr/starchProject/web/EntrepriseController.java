@@ -63,16 +63,19 @@ public class EntrepriseController {
 //	}
 
 	@PostMapping("")
+	@JsonView(Views.ViewEntreprise.class)
 	public Entreprise create(@RequestBody Entreprise entreprise) {
 		return entrepriseRepo.save(entreprise);
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewEntreprise.class)
 	public Entreprise update(@RequestBody Entreprise entreprise, @PathVariable Long id) {
 		return entrepriseRepo.save(entreprise);
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Views.ViewEntreprise.class)
 	public void delete(@PathVariable Long id) {
 		entrepriseRepo.deleteById(id);
 	}
