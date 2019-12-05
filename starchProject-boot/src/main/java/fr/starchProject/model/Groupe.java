@@ -23,7 +23,7 @@ public class Groupe {
 	private Long id;
 	@Version
 	@JsonView(Views.ViewCommon.class)
-	private Integer version;
+	private int version;
 	@JsonView(Views.ViewCommon.class)
 	private String codeGroupe;
 	@JsonView(Views.ViewCommon.class)
@@ -44,10 +44,10 @@ public class Groupe {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Integer getVersion() {
+	public int getVersion() {
 		return version;
 	}
-	public void setVersion(Integer version) {
+	public void setVersion(int version) {
 		this.version = version;
 	}
 	public String getCodeGroupe() {

@@ -70,6 +70,7 @@ public class Evenement {
 	private Entreprise entreprise;
 	@ManyToOne
 	@JoinColumn(name = "groupe_id")
+	@JsonView(Views.ViewEvenementDetail.class)
 	private Groupe groupe;
 
 	public EvenementStarch getEvenementStarch() {
