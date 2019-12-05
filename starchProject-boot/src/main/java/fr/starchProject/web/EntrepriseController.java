@@ -56,13 +56,6 @@ public class EntrepriseController {
 	        return evenements;
 	    }
 
-	
-//	@GetMapping("/{id}/detail3")
-//	@JsonView(Views.ViewEntrepriseUtilisateur.class)
-//	public Entreprise findwithUtilisateur(@PathVariable Long id) {
-//		Entreprise entreprise = entrepriseRepo.findWithUtilisateur(id);
-//		return entreprise;
-//	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewEntreprise.class)
