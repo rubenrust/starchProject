@@ -62,6 +62,8 @@ public class EvenementController {
 	@PostMapping("")
 	@JsonView(Views.ViewEvenement.class)
 	public Evenement create(@RequestBody Evenement evenement) {
+		System.out.println(evenement);
+		
 		return evenementRepo.save(evenement);
 	}
 
