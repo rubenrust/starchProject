@@ -48,26 +48,37 @@ public class GroupeController {
 		return groupe;
 	}
 
-	
+	@GetMapping("/{id}/evenements")
+	@JsonView(Views.ViewEvenementGroupe.class)
+	public List<Evenement> findEvenementsByGroupeId(@PathVariable Long id) {
+		List<Evenement> evenements = evenementRepo.findAllByGroupeId(id);
+		return evenements;
+	}
 
 
 	@PostMapping("")
+	@JsonView(Views.ViewGroupe.class)
 	public Groupe create(@RequestBody Groupe groupe) {
 		return groupeRepo.save(groupe);
 	}
+	
+	
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewGroupe.class)
 	public Groupe update(@RequestBody Groupe groupe, @PathVariable Long id) {
 		return groupeRepo.save(groupe);
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Views.ViewGroupe.class)
 	public void delete(@PathVariable Long id) {
 		groupeRepo.deleteById(id);
 	}
 	
 
-	@GetMapping("/{id}/groupe")
+	@GetMapping("/{id}/utilisateurs")
+	@JsonView(Views.ViewtUtilisateurGroupe.class)
 	public List<Utilisateur> findUtilisateursByGroupeId(@PathVariable Long id){
 		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByGroupeId(id);
 		
