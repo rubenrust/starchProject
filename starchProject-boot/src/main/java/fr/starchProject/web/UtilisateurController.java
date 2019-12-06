@@ -45,7 +45,7 @@ public class UtilisateurController {
 	IGroupeRepository groupeRepo;
 	
 	@Autowired
-	private IEntrepriseRepository entrepriseRepo;
+	IEntrepriseRepository entrepriseRepo;
 	
 	@GetMapping("")
 	@JsonView(Views.ViewUtilisateur.class)
@@ -104,5 +104,11 @@ public class UtilisateurController {
 		List<Groupe> groupes = groupeRepo.findAllByUtilisateur(id);
 		
 		return groupes;
+	}
+	@GetMapping("/{id}/entreprise")
+	@JsonView(Views.ViewEntrepriseUtilisateur.class)
+	public Entreprise findEntrepriseByUtilisateurId(@PathVariable Long id) {
+		Entreprise entreprise = entrepriseRepo.findEntrepriseByUtilisateurId(id);
+		return entreprise;
 	}
 }

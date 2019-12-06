@@ -34,7 +34,7 @@ public class Utilisateur {
 	@JsonView(Views.ViewCommon.class)
 	private String identifiant;
 	@JsonView(Views.ViewCommon.class)
-	private String motDePasse;
+	private String mdp;
 	@JsonView(Views.ViewCommon.class)
 	private String telephone;
 	@JsonView(Views.ViewCommon.class)
@@ -103,12 +103,12 @@ public class Utilisateur {
 		this.identifiant = identifiant;
 	}
 
-	public String getMotDePasse() {
-		return motDePasse;
+	public String getmdp() {
+		return mdp;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public void setmdp(String mdp) {
+		this.mdp = mdp;
 	}
 
 	public String getTelephone() {

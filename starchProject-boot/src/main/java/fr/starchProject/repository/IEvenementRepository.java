@@ -12,7 +12,7 @@ import fr.starchProject.model.Participation;
 
 public interface IEvenementRepository extends JpaRepository<Evenement, Long> {
 
-	@Query("select e from Evenement e join e.entreprise en where en.id = :id")
+	@Query("select e.evenements from Entreprise e where e.id = :id")
 	List<Evenement> findAllByEntreprise(@Param("id") Long id);
 	
 	@Query("select p.evenement from Participation p where p.utilisateur.id = :id")
