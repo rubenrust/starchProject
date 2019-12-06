@@ -64,17 +64,25 @@ public class UtilisateurController {
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.ViewUtilisateur.class)
 	public Utilisateur create(@RequestBody Utilisateur utilisateur) {
+		if(utilisateur.getEntreprise() != null) {
 		Entreprise entreprise = entrepriseRepo.save(utilisateur.getEntreprise());	
 		utilisateur.setEntreprise(entreprise);		
 		return utilisateurRepo.save(utilisateur);
+		}
+		else {
+			return utilisateurRepo.save(utilisateur);
+		}
 	}
 	
 	
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewUtilisateur.class)
 	public Utilisateur update(@RequestBody Utilisateur utilisateur, @PathVariable Long id) {
 		return utilisateurRepo.save(utilisateur);
 	}
+	
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
@@ -110,5 +118,12 @@ public class UtilisateurController {
 	public Entreprise findEntrepriseByUtilisateurId(@PathVariable Long id) {
 		Entreprise entreprise = entrepriseRepo.findEntrepriseByUtilisateurId(id);
 		return entreprise;
+	}
+	
+	@GetMapping("/login/{identifiant}")
+	@JsonView(Views.ViewUtilisateur.class)
+	public Utilisateur findByIdentifiant(@PathVariable String identifiant) {
+		Utilisateur utilisateur = utilisateurRepo.findByIdentifiant(identifiant);
+		return utilisateur;
 	}
 }
