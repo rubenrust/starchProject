@@ -111,4 +111,11 @@ public class UtilisateurController {
 		Entreprise entreprise = entrepriseRepo.findEntrepriseByUtilisateurId(id);
 		return entreprise;
 	}
+	
+	@GetMapping("/login/{identifiant}")
+	@JsonView(Views.ViewUtilisateur.class)
+	public Utilisateur findByIdentifiant(@PathVariable String identifiant) {
+		Utilisateur utilisateur = utilisateurRepo.findByIdentifiant(identifiant);
+		return utilisateur;
+	}
 }
