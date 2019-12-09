@@ -64,7 +64,7 @@ public class Evenement {
 	private EvenementStarch evenementStarch;
 	@ManyToOne
 	@JoinColumn(name = "lieuxEvenement_id")
-	@JsonView(Views.ViewEvenementDetail.class)
+	@JsonView(Views.ViewEvenement.class)
 	private LieuxEvenement lieuxEvenement;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entreprise_id")
@@ -74,6 +74,16 @@ public class Evenement {
 	@JoinColumn(name = "groupe_id")
 	@JsonView(Views.ViewEvenementDetail.class)
 	private Groupe groupe;
+	@JsonView(Views.ViewCommon.class)
+	private String description;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public EvenementStarch getEvenementStarch() {
 		return evenementStarch;

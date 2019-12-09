@@ -23,7 +23,7 @@ private Long id;
 private Integer version;
 @JsonView(Views.ViewCommon.class)
 private String commentaire;
-@ManyToOne(fetch = FetchType.EAGER)
+@ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name="utilisateur_id")
 @JsonView(Views.ViewCommentaireDetail.class)
 private Utilisateur utilisateur;
