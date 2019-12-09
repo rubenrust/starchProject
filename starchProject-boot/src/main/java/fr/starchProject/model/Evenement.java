@@ -39,6 +39,8 @@ public class Evenement {
 	@JsonView(Views.ViewCommon.class)
 	private Integer prix;
 	@JsonView(Views.ViewCommon.class)
+	private Boolean statutOf;
+	@JsonView(Views.ViewCommon.class)
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
 	@JsonView(Views.ViewCommon.class)

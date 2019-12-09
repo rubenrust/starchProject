@@ -17,5 +17,9 @@ public interface IParticipationRepository extends JpaRepository <Participation,L
 	
 	@Query("select p from Participation p where p.utilisateur.id = :iduser and p.evenement.id = :idevent")
 	Participation findParticipationByUtilisateurAndEvent(@Param("iduser") Long iduser, @Param("idevent") Long idevent );
+
+	@Query("select p from Participation p where p.evenement.id = :id")
+	List<Participation> findAllPartcipationbyEvenement(@Param("id") Long id);
+
 	
 }
