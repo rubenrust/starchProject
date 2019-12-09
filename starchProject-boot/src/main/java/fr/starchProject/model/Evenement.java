@@ -206,5 +206,7 @@ public class Evenement {
 	public void setNomEvenement(NomEvenement nomEvenement) {
 		this.nomEvenement = nomEvenement;
 	}
+	
+	
 
 }
