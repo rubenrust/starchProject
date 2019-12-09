@@ -31,7 +31,7 @@ public class LieuxEvenement {
 	@JsonView(Views.ViewCommon.class)
 	private Adresse adresse;
 	@OneToMany(mappedBy = "lieuxEvenement")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewLieuxEvenementDetail.class)
 	private List<Evenement> evenements = new ArrayList<Evenement>();
 	@OneToOne(mappedBy = "lieuxEvenement")
 	@JsonView(Views.ViewLieuxEvenementDetail.class)

@@ -97,8 +97,8 @@ public class UtilisateurController {
 	
 	@GetMapping("/{id}/favoris")
 	@JsonView(Views.ViewFavoris.class)
-	public Favoris findByUtilisateurId(@PathVariable Long id) {
-		Favoris favoris = favorisRepo.findByUtilisateurId(id);
+	public List<Favoris> findByUtilisateurId(@PathVariable Long id) {
+		List<Favoris> favoris = favorisRepo.findByUtilisateurId(id);
 		
 		return favoris;
 	}
