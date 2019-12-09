@@ -19,12 +19,14 @@ import fr.starchProject.model.Entreprise;
 import fr.starchProject.model.Evenement;
 import fr.starchProject.model.Favoris;
 import fr.starchProject.model.Groupe;
+import fr.starchProject.model.Participation;
 import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.IEntrepriseRepository;
 import fr.starchProject.repository.IEvenementRepository;
 import fr.starchProject.repository.IFavorisRepository;
 import fr.starchProject.repository.IGroupeRepository;
+import fr.starchProject.repository.IParticipationRepository;
 import fr.starchProject.repository.IUtilisateurRepository;
 
 @RestController
@@ -46,6 +48,9 @@ public class UtilisateurController {
 	
 	@Autowired
 	IEntrepriseRepository entrepriseRepo;
+	
+	@Autowired
+	IParticipationRepository participationRepo;
 	
 	@GetMapping("")
 	@JsonView(Views.ViewUtilisateur.class)
@@ -119,4 +124,21 @@ public class UtilisateurController {
 		Entreprise entreprise = entrepriseRepo.findEntrepriseByUtilisateurId(id);
 		return entreprise;
 	}
+	
+	@GetMapping("/{id}/participation")
+	@JsonView(Views.ViewEntrepriseUtilisateur.class)
+	public List<Participation> findParticipationByUtilisateur(@PathVariable Long id) {
+		List<Participation> participation = participationRepo.findParticipationByUtilisateur((long)id);
+		return participation;
+	}
+	
+	@GetMapping("/{iduser}/evenement/{idevent}/participation")
+	@JsonView(Views.ViewParticipationUtilisateurEvenement.class)
+	public Participation findParticipationByUtilisateurAndEvent(@PathVariable Long iduser, @PathVariable Long idevent ) {
+	Participation participation = participationRepo.findParticipationByUtilisateurAndEvent((long)iduser, (long) idevent);
+		return participation;
 }
+	
+}
+	
+
