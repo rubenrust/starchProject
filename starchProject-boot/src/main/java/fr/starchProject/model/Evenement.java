@@ -39,6 +39,8 @@ public class Evenement {
 	@JsonView(Views.ViewCommon.class)
 	private Integer prix;
 	@JsonView(Views.ViewCommon.class)
+	private Boolean statutOf;
+	@JsonView(Views.ViewCommon.class)
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
 	@JsonView(Views.ViewCommon.class)
@@ -62,7 +64,7 @@ public class Evenement {
 	private EvenementStarch evenementStarch;
 	@ManyToOne
 	@JoinColumn(name = "lieuxEvenement_id")
-	@JsonView(Views.ViewEvenementDetail.class)
+	@JsonView(Views.ViewEvenement.class)
 	private LieuxEvenement lieuxEvenement;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "entreprise_id")
@@ -72,6 +74,16 @@ public class Evenement {
 	@JoinColumn(name = "groupe_id")
 	@JsonView(Views.ViewEvenementDetail.class)
 	private Groupe groupe;
+	@JsonView(Views.ViewCommon.class)
+	private String description;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public EvenementStarch getEvenementStarch() {
 		return evenementStarch;
@@ -204,5 +216,7 @@ public class Evenement {
 	public void setNomEvenement(NomEvenement nomEvenement) {
 		this.nomEvenement = nomEvenement;
 	}
+	
+	
 
 }

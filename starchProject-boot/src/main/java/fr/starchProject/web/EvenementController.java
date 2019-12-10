@@ -17,10 +17,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.starchProject.model.Commentaire;
 import fr.starchProject.model.Evenement;
+import fr.starchProject.model.Participation;
 import fr.starchProject.model.Utilisateur;
 import fr.starchProject.model.Views;
 import fr.starchProject.repository.ICommentaireRepository;
 import fr.starchProject.repository.IEvenementRepository;
+import fr.starchProject.repository.IParticipationRepository;
 import fr.starchProject.repository.IUtilisateurRepository;
 import fr.starchProject.repository.SearchCriteria;
 
@@ -37,6 +39,9 @@ public class EvenementController {
 	
 	@Autowired
 	private IUtilisateurRepository utilisateurRepo;
+	
+	@Autowired
+	private IParticipationRepository participationRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewEvenement.class)
@@ -101,4 +106,13 @@ public class EvenementController {
 		List<Evenement> evenements = evenementRepo.search(searchCriteria);
 		return evenements;
 	}
+	
+	@GetMapping("/{id}/participation")
+	@JsonView(Views.ViewUtilisateur.class)
+	public List<Participation> findAllParticipationByEvenement(@PathVariable Long id) {
+		List<Participation> participations = participationRepo.findAllPartcipationbyEvenement((long)id);
+		return participations;
+	}
+	
+	
 }
