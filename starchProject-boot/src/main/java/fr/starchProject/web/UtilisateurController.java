@@ -136,15 +136,15 @@ public class UtilisateurController {
 	@JsonView(Views.ViewParticipationUtilisateurEvenement.class)
 	public Participation findParticipationByUtilisateurAndEvent(@PathVariable Long iduser, @PathVariable Long idevent ) {
 	Participation participation = participationRepo.findParticipationByUtilisateurAndEvent((long)iduser, (long) idevent);
-		return participation;
+		return participation;}
 	
-//	@GetMapping("/login/{identifiant}")
-//	@JsonView(Views.ViewUtilisateur.class)
-//	public Utilisateur findByIdentifiant(@PathVariable String identifiant) {
-//		Utilisateur utilisateur = utilisateurRepo.findByIdentifiant(identifiant);
-//		return utilisateur;
-//	}
-}
+	@GetMapping("/login/{identifiant}")
+	@JsonView(Views.ViewUtilisateur.class)
+	public Utilisateur findByIdentifiant(@PathVariable String identifiant) {
+		Utilisateur utilisateur = utilisateurRepo.findByIdentifiant(identifiant);
+		return utilisateur;
+	}
+
 	
 }
 	
