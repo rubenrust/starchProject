@@ -113,7 +113,7 @@ public class UtilisateurController {
 	
 	@GetMapping("/{id}/groupes")
 	@JsonView(Views.ViewGroupe.class)
-	List<Groupe> findGroupesByUtilisateur(@PathVariable("id") Long id){
+	List<Groupe> findGroupesByUtilisateurId(@PathVariable("id") Long id){
 		List<Groupe> groupes = groupeRepo.findAllByUtilisateur(id);
 		
 		return groupes;

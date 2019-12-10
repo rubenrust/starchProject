@@ -29,21 +29,21 @@ public class ParticipationController {
 	private IParticipationRepository participationRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewEvenement.class)
+	@JsonView(Views.ViewParticipation.class)
 	public List<Participation> list() {
 		List<Participation> participations = participationRepo.findAll();
 		return participations;
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewEvenement.class)
+	@JsonView(Views.ViewParticipation.class)
 	public Participation find(@PathVariable Long id) {
 		Participation participation = (Participation) participationRepo.findById(id).get();
 		return participation;
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewEvenement.class)
+	@JsonView(Views.ViewParticipation.class)
 	public Participation create(@RequestBody Participation participation) {
 		System.out.println(participation);
 		
@@ -51,7 +51,7 @@ public class ParticipationController {
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewEvenement.class)
+	@JsonView(Views.ViewParticipation.class)
 	public Participation update(@RequestBody Participation participation, @PathVariable Long id) {
 		return participationRepo.save(participation);
 	}
