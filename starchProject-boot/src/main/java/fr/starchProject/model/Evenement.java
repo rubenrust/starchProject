@@ -35,6 +35,8 @@ public class Evenement {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	@JsonView(Views.ViewCommon.class)
+	private String heure;
+	@JsonView(Views.ViewCommon.class)
 	private Integer nbParticipantMax;
 	@JsonView(Views.ViewCommon.class)
 	private Integer prix;
