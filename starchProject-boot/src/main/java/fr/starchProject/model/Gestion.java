@@ -10,20 +10,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Table
 public class Gestion {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewCommon.class)
 	private TypeGestion gestion;
 	@Version
+	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@ManyToOne
+	@JsonView(Views.ViewUtilisateur.class)
 	@JoinColumn(name="utilisateur_id")
 	private Utilisateur utilisateur;
+	@JsonView(Views.ViewGroupe.class)
 	@ManyToOne
 	@JoinColumn(name="groupe_id")
 	private Groupe groupe;
