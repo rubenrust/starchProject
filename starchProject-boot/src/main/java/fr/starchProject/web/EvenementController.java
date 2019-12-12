@@ -24,7 +24,6 @@ import fr.starchProject.repository.ICommentaireRepository;
 import fr.starchProject.repository.IEvenementRepository;
 import fr.starchProject.repository.IParticipationRepository;
 import fr.starchProject.repository.IUtilisateurRepository;
-import fr.starchProject.repository.SearchCriteria;
 
 @RestController
 @RequestMapping("/evenement")
@@ -98,13 +97,6 @@ public class EvenementController {
 		List<Utilisateur> utilisateurs = utilisateurRepo.findAllByEvenementAndParticipant(id);
 		
 		return utilisateurs;
-	}
-	
-	@PostMapping("/search")
-	@JsonView(Views.ViewEvenement.class)
-	public List<Evenement> search(@RequestBody SearchCriteria searchCriteria) {
-		List<Evenement> evenements = evenementRepo.search(searchCriteria);
-		return evenements;
 	}
 	
 	@GetMapping("/{id}/participation")
