@@ -62,7 +62,7 @@ public class Evenement {
 	private List<Participation> participations = new ArrayList<Participation>();
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "evenementStarch_id")
-	@JsonView(Views.ViewEvenementDetail.class)
+	@JsonView(Views.ViewEvenement.class)
 	private EvenementStarch evenementStarch;
 	@ManyToOne
 	@JoinColumn(name = "lieuxEvenement_id")
