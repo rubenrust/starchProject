@@ -12,4 +12,7 @@ public interface IEntrepriseRepository extends JpaRepository<Entreprise, Long>{
 	
 	@Query("select e from Entreprise e left join e.collaborateurs u where u.id = :id")
 	Entreprise findEntrepriseByUtilisateurId(@Param("id") Long id);
+	
+	@Query("select e from Entreprise e where e.codeEntreprise = :codeEntreprise")
+	Entreprise findEntrepriseByCode(@Param("codeEntreprise") String code);
 }

@@ -58,7 +58,7 @@ public class EvenementController {
 	}
 
 	@GetMapping("/{id}/commentaires")
-	@JsonView(Views.ViewEvenementDetail.class)
+	@JsonView(Views.ViewCommentaireDetail.class)
 	public List<Commentaire> findCommentairesByEvenement(@PathVariable Long id) {
 		List<Commentaire> commentaires = commentaireRepo.findAllByEvenement(id);
 

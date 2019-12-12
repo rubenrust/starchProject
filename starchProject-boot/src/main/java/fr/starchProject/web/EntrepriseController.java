@@ -74,6 +74,13 @@ public class EntrepriseController {
 	public void delete(@PathVariable Long id) {
 		entrepriseRepo.deleteById(id);
 	}
+	
+	@GetMapping("/code/{codeEntreprise}")
+	@JsonView(Views.ViewEntreprise.class)
+	public Entreprise findByCode(@PathVariable String codeEntreprise) {
+		Entreprise entreprise = entrepriseRepo.findEntrepriseByCode(codeEntreprise);
+		return entreprise;
+	}
 
 
 }
