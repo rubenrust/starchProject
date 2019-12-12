@@ -10,7 +10,7 @@ import fr.starchProject.model.Commentaire;
 
 public interface ICommentaireRepository extends JpaRepository<Commentaire, Long> {
 
-	@Query("select e.commentaires from Evenement e join e.commentaires ec where e.id = :id")
+	@Query("select distinct e.commentaires from Evenement e join e.commentaires ec where e.id = :id")
 	List<Commentaire> findAllByEvenement(@Param("id") Long id);
 
 }

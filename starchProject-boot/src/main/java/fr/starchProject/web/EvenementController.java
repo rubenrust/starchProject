@@ -100,13 +100,6 @@ public class EvenementController {
 		return utilisateurs;
 	}
 	
-	@PostMapping("/search")
-	@JsonView(Views.ViewEvenement.class)
-	public List<Evenement> search(@RequestBody SearchCriteria searchCriteria) {
-		List<Evenement> evenements = evenementRepo.search(searchCriteria);
-		return evenements;
-	}
-	
 	@GetMapping("/{id}/participation")
 	@JsonView(Views.ViewUtilisateur.class)
 	public List<Participation> findAllParticipationByEvenement(@PathVariable Long id) {
@@ -114,5 +107,10 @@ public class EvenementController {
 		return participations;
 	}
 	
-	
+	@PostMapping("/search")
+	@JsonView(Views.ViewEvenement.class)
+	public List<Evenement> search(@RequestBody SearchCriteria searchCriteria) {
+		List<Evenement> evenements = evenementRepo.search(searchCriteria);
+		return evenements;
+	}
 }
